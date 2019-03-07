@@ -1,3 +1,3 @@
-// custom typefaces
-import 'typeface-montserrat';
+// Typefaces
+import 'typeface-open-sans';
 import 'typeface-merriweather';

@@ -1,11 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Starter Blog',
-    author: 'Kyle Mathews',
-    description: 'A starter blog demonstrating what Gatsby can do.',
-    siteUrl: 'https://gatsby-starter-blog-demo.netlify.com/',
+    title: 'Ben Booth',
+    author: 'Ben Booth',
+    description: `Hi 👋 I'm Ben and I make things for the web. Sometimes I write things here and sometimes I talk about things. I'm also a husband & father, football (soccer) addict and a Christian.`,
+    siteUrl: 'http://benbooth.dev',
     social: {
-      twitter: 'kylemathews',
+      github: 'bkbooth',
+      twitter: 'bkbooth11',
     },
   },
   plugins: [
@@ -57,13 +58,13 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Gatsby Starter Blog',
-        short_name: 'GatsbyJS',
+        name: 'Ben Booth',
+        short_name: 'Ben Booth',
         start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#663399',
+        background_color: '#0f6d94',
+        theme_color: '#2197c8',
         display: 'minimal-ui',
-        icon: 'content/assets/gatsby-icon.png',
+        icon: 'content/assets/bb-logo.png',
       },
     },
     'gatsby-plugin-offline',
