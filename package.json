@@ -1,11 +1,34 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "benbooth.dev",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "description": "The source for the personal site and blog of Ben Booth",
+  "version": "1.0.0",
+  "author": "Ben Booth <bkbooth@gmail.com> (https://benbooth.dev)",
+  "license": "MIT",
+  "homepage": "https://benbooth.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkbooth/benbooth.dev.git"
+  },
+  "keywords": [
+    "Ben Booth",
+    "benbooth.dev",
+    "bkbooth",
+    "gatsby"
+  ],
+  "main": "n/a",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "dependencies": {
     "gatsby": "^2.1.23",
@@ -18,7 +41,7 @@
     "gatsby-plugin-sharp": "^2.0.25",
     "gatsby-plugin-typography": "^2.2.8",
     "gatsby-remark-copy-linked-files": "^2.0.9",
-    "gatsby-remark-images": "^2.0.6",
+    "gatsby-remark-images": "^3.0.6",
     "gatsby-remark-prismjs": "^3.2.4",
     "gatsby-remark-responsive-iframe": "^2.0.9",
     "gatsby-remark-smartypants": "^2.0.8",
@@ -36,24 +59,8 @@
     "typography-theme-wordpress-2016": "^0.16.18"
   },
   "devDependencies": {
-    "prettier": "^1.16.4"
-  },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
-  },
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "husky": "^1.3.1",
+    "prettier": "^1.16.4",
+    "pretty-quick": "^1.10.0"
   }
 }
