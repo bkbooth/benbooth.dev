@@ -31,8 +31,14 @@
   },
   "dependencies": {
     "gatsby": "^2.1.24",
+    "gatsby-plugin-typography": "^2.2.8",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "react-typography": "^0.16.19",
+    "typeface-merriweather": "^0.0.72",
+    "typeface-open-sans": "^0.0.54",
+    "typography": "^0.16.19",
+    "typography-theme-sutro": "^0.16.19"
   },
   "devDependencies": {
     "husky": "^1.3.1",
