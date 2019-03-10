@@ -10,6 +10,7 @@ module.exports = {
     },
   },
   plugins: [
+    'gatsby-plugin-netlify-cms',
     {
       resolve: 'gatsby-plugin-typography',
       options: {
@@ -17,5 +18,6 @@ module.exports = {
         omitGoogleFont: true,
       },
     },
+    'gatsby-plugin-netlify',
   ],
 };

@@ -31,7 +31,10 @@
   },
   "dependencies": {
     "gatsby": "^2.1.24",
+    "gatsby-plugin-netlify": "^2.0.11",
+    "gatsby-plugin-netlify-cms": "^3.0.12",
     "gatsby-plugin-typography": "^2.2.8",
+    "netlify-cms": "^2.6.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-typography": "^0.16.19",
