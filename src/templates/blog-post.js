@@ -10,7 +10,13 @@ const BlogPostTemplate = ({ data }) => {
   const { hero } = post.frontmatter;
   return (
     <Layout>
-      {hero && hero.image && <Image fluid={hero.image.childImageSharp.fluid} alt={hero.alt} />}
+      {hero && hero.image && (
+        <Image
+          fluid={hero.image.childImageSharp.fluid}
+          alt={hero.alt}
+          style={{ maxHeight: '65vh' }}
+        />
+      )}
       <Link to="/">‹ {site.title}</Link>
       <article>
         <header>
@@ -47,7 +53,7 @@ export const pageQuery = graphql`
           image {
             childImageSharp {
               fluid(maxWidth: 1920) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
