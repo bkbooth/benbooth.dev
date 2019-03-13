@@ -18,7 +18,7 @@ const BlogPostTemplate = ({ data }) => {
         />
       )}
       <Link to="/">‹ {site.title}</Link>
-      <article>
+      <article style={{ width: '80%', maxWidth: '710px', margin: '0 auto' }}>
         <header>
           <h1>{post.frontmatter.title}</h1>
         </header>
