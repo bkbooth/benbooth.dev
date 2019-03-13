@@ -1,6 +1,6 @@
 ---
 title: Beware the DOM Reflow
-date: 2014-03-14T17:17:00+10:00
+date: 2014-03-14T17:17:00+11:00
 tags: [Programming, CSS]
 ---
 

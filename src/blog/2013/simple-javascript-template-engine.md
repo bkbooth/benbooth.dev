@@ -1,6 +1,6 @@
 ---
 title: Simple JavaScript template engine
-date: 2013-12-30T00:11:00+10:00
+date: 2013-12-30T00:11:00+11:00
 tags: [Programming, JavaScript]
 ---
 

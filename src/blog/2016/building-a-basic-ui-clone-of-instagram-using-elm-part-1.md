@@ -1,6 +1,6 @@
 ---
 title: Building a basic UI-clone of Instagram using Elm - Part 1
-date: 2016-12-01T13:14:00+10:00
+date: 2016-12-01T13:14:00+11:00
 tags: [Programming, Elm, Functional]
 ---
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import format from 'date-fns/format';
 import Layout from '../components/layout';
 
 const BlogPostTemplate = ({ data }) => {
@@ -12,7 +13,7 @@ const BlogPostTemplate = ({ data }) => {
           <h1>{post.frontmatter.title}</h1>
         </header>
         <p>
-          {post.frontmatter.date} | ~{post.timeToRead} mins
+          {format(post.frontmatter.date, 'Do MMMM YYYY')} | ~{post.timeToRead} mins read
         </p>
         <p>{post.frontmatter.tags.join(', ')}</p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -35,7 +36,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "Do MMMM YYYY")
+        date
         tags
       }
     }

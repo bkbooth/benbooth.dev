@@ -1,6 +1,6 @@
 ---
 title: Managing Keybase private key with GPGTools
-date: 2017-02-09T00:07:00+10:00
+date: 2017-02-09T00:07:00+11:00
 tags: [Keybase, GPG, PGP]
 ---
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
+import format from 'date-fns/format';
 import Layout from '../components/layout';
 
 const IndexPage = ({ data }) => {
@@ -18,7 +19,7 @@ const IndexPage = ({ data }) => {
               <Link to={`/${post.fields.slug}`}>{post.frontmatter.title}</Link>
             </h2>
             <p>
-              {post.frontmatter.date} | ~{post.timeToRead} mins
+              {format(post.frontmatter.date, 'Do MMMM YYYY')} | ~{post.timeToRead} mins read
             </p>
             <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
             <p>{post.frontmatter.tags.join(', ')}</p>
@@ -50,7 +51,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
-            date(formatString: "Do MMMM YYYY")
+            date
             tags
           }
         }
