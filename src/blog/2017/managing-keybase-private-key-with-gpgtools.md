@@ -10,7 +10,7 @@ This is not a particularly well-written article. I've found everything here usef
 
 Export your existing public and private keys from [Keybase][], save them locally as `keybase-public.key` and `keybase-private.key` respectively.
 
-![Export private key from Keybase](/images/2017/02/Screen-Shot-2017-02-08-at-11.23.16-pm.png)
+![Export private key from Keybase](../../assets/keybase/Screen-Shot-2017-02-08-at-11.23.16-pm.png)
 
 Import both keys into your local [GPGTools][]:
 
@@ -73,7 +73,7 @@ keybase pgp export | pbcopy
 
 Go to [GitHub][] > [Settings](https://github.com/settings/profile) > [SSH and GPG keys](https://github.com/settings/keys)
 
-![](/images/2017/02/Screen-Shot-2017-02-08-at-11.52.57-pm.jpg)
+![Manage GPG keys on GitHub](../../assets/keybase/Screen-Shot-2017-02-08-at-11.52.57-pm.jpg)
 
 Add a 'New GPG key', or 'Delete' your existing one first if you're updating it.
 

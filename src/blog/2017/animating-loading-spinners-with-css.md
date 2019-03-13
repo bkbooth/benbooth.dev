@@ -2,12 +2,14 @@
 title: Animating Loading Spinners with CSS
 date: 2017-06-21T08:49:09+10:00
 tags: [Programming, SydCSS, CSS, Animation, Keyframes]
-image: /images/2017/06/highres_461629142.jpg
+hero:
+  image: ../../assets/css-animation/highres_461629142.jpg
+  alt: Ben Booth presenting this talk at SydCSS
 ---
 
 I recently had the privilege of being invited to give my first ever meetup talk at [SydCSS][]. It was a first time speakers night so short talks (5 mins) and high nerves were the order of the day. On a recent side project I had wasted a bunch of time creating a fancy loading spinner while I was mentally blocked trying to solve a real problem. I had the idea at the time that I could probably give a reasonably interesting talk by making some loading animations with CSS and explaining the interesting parts of the [CSS animation][css-animation] API used for each animation. I had a rough plan and a platform, the rest of this article is the transcript of that talk rewritten as a blog post.
 
-> You can view the [slides][] for the talk [here][slides], take a look and play around with the examples on the slides! The talk was recorded so provided I don't find it unbearably cringeworthy I'll embed it here when it's uploaded.
+> You can view the [slides][] for the talk [here][slides], take a look and play around with the examples on the slides!
 
 There are two basic building blocks for [CSS animations][css-animation]. Firstly the [`@keyframes` at-rule][css-keyframes], which you define with the `@keyframes` keyword, then a name or identifier for the keyframes set, then a list of steps which define CSS properties for each step.
 
@@ -85,7 +87,7 @@ If you're using SASS or something similar, you can improve on this by setting th
 
 This bouncing dot animation uses yet another fairly simple [`@keyframes` at-rule][css-keyframes], it's just using the [`transform`][css-transform] property to translate the dot up, and I'm using _'alternate'_ for the `animation-direction` again. To make it look more "bouncy" I've defined a _'cubic-bezier'_ function for the `animation-timing-function` property. If that looks a little daunting to you, don't worry, I didn't actually write this, and you should never need to write one of these by hand because Chrome (and possibly other browsers?) has an awesome bezier curve editor where you can just drag some dots to visually create the cubic-bezier curve and it will write the cubic-bezier function for you.
 
-![Chrome cubic-bezier editor](/images/2017/06/cubic-bezier.png 'Chrome cubic-bezier editor')
+![Chrome cubic-bezier editor](../../assets/css-animation/cubic-bezier.png 'Chrome cubic-bezier editor')
 
 <p data-height="265" data-theme-id="0" data-slug-hash="XgReQG" data-default-tab="css,result" data-user="bkbooth" data-embed-version="2" data-pen-title="Bouncing dot, triple" class="codepen">See the Pen <a href="https://codepen.io/bkbooth/pen/XgReQG/">Bouncing dot, triple</a> by Ben (<a href="https://codepen.io/bkbooth">@bkbooth</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 
@@ -95,9 +97,9 @@ Finally, to create this excitedly impatient series of dots, I've defined a sligh
 
 Most of this is relatively new to the CSS spec but support in modern browsers is actually really good. Depending what browsers you need to target though you'll get a lot of mileage out of using [autoprefixer](https://github.com/postcss/autoprefixer) to process your CSS and automatically add any required vendor prefixes like `-webkit`, `-moz`, etc.
 
-[![MDN browser support](/images/2017/06/mdn-animations.png 'MDN browser support')](https://developer.mozilla.org/en/docs/Web/CSS/animation#Browser_compatibility)
+[![MDN browser support](../../assets/css-animation/mdn-animations.png 'MDN browser support')](https://developer.mozilla.org/en/docs/Web/CSS/animation#Browser_compatibility)
 
-[![Can I use browser support](/images/2017/06/caniuse-animations.png 'Can I use browser support')](http://caniuse.com/#feat=css-animation)
+[![Can I use browser support](../../assets/css-animation/caniuse-animations.png 'Can I use browser support')](http://caniuse.com/#feat=css-animation)
 
 MDN is a great learning resources for understanding CSS properties and rules. There's also a really helpful guide on using CSS animations:
 
@@ -111,4 +113,4 @@ MDN is a great learning resources for understanding CSS properties and rules. Th
 [css-keyframes]: https://developer.mozilla.org/en/docs/Web/CSS/@keyframes
 [css-transform]: https://developer.mozilla.org/en-US/docs/Web/CSS/transform
 
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>

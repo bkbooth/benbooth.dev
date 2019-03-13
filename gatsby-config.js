@@ -1,10 +1,13 @@
 module.exports = {
   siteMetadata: {
     title: 'Ben Booth',
-    author: 'Ben Booth',
     description: `Hi 👋 I'm Ben and I make things for the web. Sometimes I write things here and sometimes I talk about things. I'm also a husband & father, football (soccer) addict and a Christian.`,
     siteUrl: 'http://benbooth.dev',
-    social: {
+    author: {
+      name: 'Ben Booth',
+      bio:
+        'Software developer specialising in JavaScript, husband & father, football (soccer) addict and Christian.',
+      location: 'Wollongong, Australia',
       github: 'bkbooth',
       twitter: 'bkbooth11',
     },
@@ -15,6 +18,13 @@ module.exports = {
       options: {
         path: `${__dirname}/src/blog`,
         name: 'blog',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/assets`,
+        name: 'assets',
       },
     },
     {
@@ -38,6 +48,8 @@ module.exports = {
         ],
       },
     },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-typography',
       options: {

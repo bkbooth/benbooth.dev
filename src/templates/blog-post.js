@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import Image from 'gatsby-image';
 import format from 'date-fns/format';
 import Layout from '../components/layout';
 
 const BlogPostTemplate = ({ data }) => {
+  const site = data.site.siteMetadata;
   const post = data.markdownRemark;
+  const { hero } = post.frontmatter;
   return (
     <Layout>
-      <Link to="/">‹ {data.site.siteMetadata.title}</Link>
+      {hero && hero.image && <Image fluid={hero.image.childImageSharp.fluid} alt={hero.alt} />}
+      <Link to="/">‹ {site.title}</Link>
       <article>
         <header>
           <h1>{post.frontmatter.title}</h1>
@@ -38,6 +42,16 @@ export const pageQuery = graphql`
         title
         date
         tags
+        hero {
+          alt
+          image {
+            childImageSharp {
+              fluid(maxWidth: 1920) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
       }
     }
   }

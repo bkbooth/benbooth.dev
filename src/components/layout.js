@@ -5,14 +5,14 @@ const Layout = ({ children }) => (
   <StaticQuery
     query={layoutQuery}
     render={data => {
-      const { author, social } = data.site.siteMetadata;
+      const { author } = data.site.siteMetadata;
       return (
         <>
           {children}
           <footer>
-            © {new Date().getFullYear()} {author} |{' '}
-            <a href={`https://twitter.com/${social.twitter}`}>Twitter</a> |{' '}
-            <a href={`https://github.com/${social.github}`}>GitHub</a>
+            © {new Date().getFullYear()} {author.name} |{' '}
+            <a href={`https://twitter.com/${author.twitter}`}>Twitter</a> |{' '}
+            <a href={`https://github.com/${author.github}`}>GitHub</a>
           </footer>
         </>
       );
@@ -26,8 +26,8 @@ const layoutQuery = graphql`
   query LAYOUT_QUERY {
     site {
       siteMetadata {
-        author
-        social {
+        author {
+          name
           twitter
           github
         }
