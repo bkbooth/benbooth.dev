@@ -2,7 +2,6 @@ module.exports = {
   siteMetadata: {
     title: 'Ben Booth',
     description: `Hi 👋 I'm Ben and I make things for the web. Sometimes I write things here and sometimes I talk about things. I'm also a husband & father, football (soccer) addict and a Christian.`,
-    url: 'https://benbooth.dev',
     author: {
       name: 'Ben Booth',
       bio:
@@ -52,6 +51,21 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-feed',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Ben Booth',
+        short_name: 'Ben Booth',
+        start_url: '/',
+        background_color: '#0f6d94',
+        theme_color: '#2197c8',
+        display: 'minimal-ui',
+        icon: 'src/assets/bb-logo.png',
+      },
+    },
+    'gatsby-plugin-netlify',
+    'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-typography',

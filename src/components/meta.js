@@ -5,15 +5,16 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 function Meta({ description, lang, meta, path, pageType, title }) {
   const {
-    site: { siteMetadata: site },
+    site: { host, port, siteMetadata: site },
   } = useStaticQuery(
     graphql`
       query {
         site {
+          host
+          port
           siteMetadata {
             title
             description
-            url
             author {
               name
               twitter
@@ -25,7 +26,10 @@ function Meta({ description, lang, meta, path, pageType, title }) {
   );
 
   const metaDescription = description || site.description;
-  const canonicalUrl = `${site.url}${path}/`;
+  const protocol = `http${host !== 'localhost' ? 's' : ''}:`;
+  const baseUrl = `${protocol}//${host}${port && port !== '80' ? `:${port}` : ''}`;
+  const canonicalUrl = `${baseUrl}${path}/`;
+  const image = `${baseUrl}/icons/icon-512x512.png`;
 
   return (
     <Helmet
@@ -55,6 +59,10 @@ function Meta({ description, lang, meta, path, pageType, title }) {
           content: canonicalUrl,
         },
         {
+          property: 'og:image',
+          content: image,
+        },
+        {
           name: 'twitter:card',
           content: 'summary',
         },
@@ -65,6 +73,10 @@ function Meta({ description, lang, meta, path, pageType, title }) {
         {
           name: 'twitter:description',
           content: metaDescription,
+        },
+        {
+          name: 'twitter:image',
+          content: image,
         },
         {
           name: 'twitter:creator',
