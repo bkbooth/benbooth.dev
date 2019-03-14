@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import Image from 'gatsby-image';
 import format from 'date-fns/format';
 import Meta from '../components/meta';
