@@ -65,7 +65,6 @@ module.exports = {
         icon: 'src/assets/bb-logo.png',
       },
     },
-    'gatsby-plugin-netlify',
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
     {
@@ -75,5 +74,6 @@ module.exports = {
         omitGoogleFont: true,
       },
     },
+    'gatsby-plugin-netlify', // Must be last plugin
   ],
 };
