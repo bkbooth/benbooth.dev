@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import format from 'date-fns/format';
 import Layout from '../components/layout';
+import { Article } from '../components/styled/article';
 
 const IndexPage = ({ data }) => {
   const site = data.site.siteMetadata;
@@ -14,7 +15,7 @@ const IndexPage = ({ data }) => {
       </header>
       <main>
         {posts.map(({ node: post }) => (
-          <article key={post.id}>
+          <Article key={post.id}>
             <h2>
               <Link to={`/${post.fields.slug}`}>{post.frontmatter.title}</Link>
             </h2>
@@ -23,7 +24,7 @@ const IndexPage = ({ data }) => {
             </p>
             <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
             <p>{post.frontmatter.tags.join(', ')}</p>
-          </article>
+          </Article>
         ))}
       </main>
     </Layout>

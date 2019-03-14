@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import Image from 'gatsby-image';
 import format from 'date-fns/format';
 import Layout from '../components/layout';
+import { Article } from '../components/styled/article';
 
 const BlogPostTemplate = ({ data }) => {
   const site = data.site.siteMetadata;
@@ -18,7 +19,7 @@ const BlogPostTemplate = ({ data }) => {
         />
       )}
       <Link to="/">‹ {site.title}</Link>
-      <article style={{ width: '80%', maxWidth: '710px', margin: '0 auto' }}>
+      <Article>
         <header>
           <h1>{post.frontmatter.title}</h1>
         </header>
@@ -27,7 +28,7 @@ const BlogPostTemplate = ({ data }) => {
         </p>
         <p>{post.frontmatter.tags.join(', ')}</p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      </article>
+      </Article>
     </Layout>
   );
 };
