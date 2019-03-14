@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import Image from 'gatsby-image';
 import format from 'date-fns/format';
+import Meta from '../components/meta';
 import Layout from '../components/layout';
 import { Article } from '../components/styled/article';
 
@@ -11,6 +12,12 @@ const BlogPostTemplate = ({ data }) => {
   const { hero } = post.frontmatter;
   return (
     <Layout>
+      <Meta
+        title={post.frontmatter.title}
+        description={post.excerpt}
+        path={`/${post.fields.slug}`}
+        pageType="article"
+      />
       {hero && hero.image && (
         <Image
           fluid={hero.image.childImageSharp.fluid}
@@ -44,7 +51,11 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       timeToRead
+      excerpt
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         date

@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import format from 'date-fns/format';
+import Meta from '../components/meta';
 import Layout from '../components/layout';
 import { Article } from '../components/styled/article';
 
@@ -9,6 +10,7 @@ const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   return (
     <Layout>
+      <Meta />
       <header>
         <h1>{site.title}</h1>
         <p>{site.description}</p>
