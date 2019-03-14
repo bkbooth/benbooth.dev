@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Ben Booth',
     description: `Hi 👋 I'm Ben and I make things for the web. Sometimes I write things here and sometimes I talk about things. I'm also a husband & father, football (soccer) addict and a Christian.`,
-    url: 'http://benbooth.dev',
+    url: 'https://benbooth.dev',
     author: {
       name: 'Ben Booth',
       bio:
