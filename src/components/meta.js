@@ -5,16 +5,15 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 function Meta({ description, lang, meta, path, pageType, title }) {
   const {
-    site: { host, port, siteMetadata: site },
+    site: { siteMetadata: site },
   } = useStaticQuery(
     graphql`
       query {
         site {
-          host
-          port
           siteMetadata {
             title
             description
+            siteUrl
             author {
               name
               twitter
@@ -26,10 +25,8 @@ function Meta({ description, lang, meta, path, pageType, title }) {
   );
 
   const metaDescription = description || site.description;
-  const protocol = `http${host !== 'localhost' ? 's' : ''}:`;
-  const baseUrl = `${protocol}//${host}${port && port !== '80' ? `:${port}` : ''}`;
-  const canonicalUrl = `${baseUrl}${path}/`;
-  const image = `${baseUrl}/icons/icon-512x512.png`;
+  const canonicalUrl = `${site.siteUrl}${path}/`;
+  const image = `${site.siteUrl}/icons/icon-512x512.png`;
 
   return (
     <Helmet
