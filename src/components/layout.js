@@ -1,6 +1,6 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import { Footer } from './styled/footer';
+import Footer from './styled/footer';
 
 const Layout = ({ children }) => (
   <StaticQuery

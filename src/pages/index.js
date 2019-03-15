@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import format from 'date-fns/format';
 import Meta from '../components/meta';
 import Layout from '../components/layout';
-import { Article } from '../components/styled/article';
+import ArticleInfo from '../components/article-info';
+import Article from '../components/styled/article';
 
 const IndexPage = ({ data }) => {
   const site = data.site.siteMetadata;
@@ -18,14 +18,15 @@ const IndexPage = ({ data }) => {
       <main>
         {posts.map(({ node: post }) => (
           <Article key={post.id}>
-            <h2>
-              <Link to={`/${post.fields.slug}`}>{post.frontmatter.title}</Link>
-            </h2>
-            <p>
-              {format(post.frontmatter.date, 'Do MMMM YYYY')} | ~{post.timeToRead} mins read
-            </p>
+            <header>
+              <h2>
+                <Link to={`/${post.fields.slug}`}>{post.frontmatter.title}</Link>
+              </h2>
+            </header>
             <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-            <p>{post.frontmatter.tags.join(', ')}</p>
+            <footer>
+              <ArticleInfo date={post.frontmatter.date} timeToRead={post.timeToRead} />
+            </footer>
           </Article>
         ))}
       </main>
@@ -55,7 +56,6 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date
-            tags
           }
         }
       }

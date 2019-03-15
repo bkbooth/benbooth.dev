@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Image from 'gatsby-image';
-import format from 'date-fns/format';
 import Meta from '../components/meta';
 import Layout from '../components/layout';
-import { Article } from '../components/styled/article';
+import ArticleInfo from '../components/article-info';
+import Article from '../components/styled/article';
 
 const BlogPostTemplate = ({ data }) => {
   const site = data.site.siteMetadata;
@@ -29,12 +29,12 @@ const BlogPostTemplate = ({ data }) => {
       <Article>
         <header>
           <h1>{post.frontmatter.title}</h1>
+          <ArticleInfo date={post.frontmatter.date} timeToRead={post.timeToRead} />
         </header>
-        <p>
-          {format(post.frontmatter.date, 'Do MMMM YYYY')} | ~{post.timeToRead} mins read
-        </p>
-        <p>{post.frontmatter.tags.join(', ')}</p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <footer>
+          <p>{post.frontmatter.tags.join(', ')}</p>
+        </footer>
       </Article>
     </Layout>
   );
