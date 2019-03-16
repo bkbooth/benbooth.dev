@@ -34,8 +34,10 @@ const Photo = styled.div`
 const StyledImage = styled(Image)`
   width: 50px;
   height: 50px;
-  border-radius: 100%;
-  overflow: hidden;
+  img {
+    border-radius: 100%;
+    overflow: hidden;
+  }
 `;
 
 const Details = styled.div`
@@ -68,9 +70,7 @@ const ArticleInfo = ({ date, timeToRead }) => (
         <Details>
           <Author>{site.author.name}</Author>
           <Dateline>
-            <time dateTime={date} pubdate>
-              {format(date, 'Do MMM YYYY')}
-            </time>
+            <time dateTime={date}>{format(date, 'Do MMM YYYY')}</time>
             <Spacer>&middot;</Spacer>
             {timeToRead} min read
           </Dateline>
