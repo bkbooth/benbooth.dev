@@ -4,6 +4,8 @@ import Meta from '../components/meta';
 import Layout from '../components/layout';
 import ArticleInfo from '../components/article-info';
 import Article from '../components/styled/article';
+import Welcome from '../components/styled/welcome';
+import { HeaderSpacer } from '../components/styled/header';
 
 const IndexPage = ({ data }) => {
   const site = data.site.siteMetadata;
@@ -11,10 +13,11 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <Meta />
-      <header>
+      <HeaderSpacer />
+      <Welcome>
         <h1>{site.title}</h1>
         <p>{site.description}</p>
-      </header>
+      </Welcome>
       <main>
         {posts.map(({ node: post }) => (
           <Article key={post.id}>

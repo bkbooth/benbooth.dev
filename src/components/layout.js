@@ -1,14 +1,36 @@
 import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
+import Image from 'gatsby-image';
+import styled from 'styled-components';
+import Header from './styled/header';
 import Footer from './styled/footer';
+
+const LogoLink = styled(Link)`
+  display: inline-block;
+  line-height: 0; /* don't take up any _extra_ vertical space */
+`;
+
+const Logo = styled(Image)`
+  width: 40px;
+  height: 40px;
+  img {
+    margin: 0;
+  }
+`;
 
 const Layout = ({ children }) => (
   <StaticQuery
     query={layoutQuery}
     render={data => {
-      const { author } = data.site.siteMetadata;
+      const { bbLogo, site } = data;
+      const { author } = site.siteMetadata;
       return (
         <>
+          <Header>
+            <LogoLink to="/">
+              <Logo fixed={bbLogo.childImageSharp.fixed} alt="Bb logo" />
+            </LogoLink>
+          </Header>
           {children}
           <Footer>
             © {new Date().getFullYear()} {author.name} |{' '}
@@ -31,6 +53,13 @@ const layoutQuery = graphql`
           name
           twitter
           github
+        }
+      }
+    }
+    bbLogo: file(absolutePath: { regex: "/bb-logo.png/" }) {
+      childImageSharp {
+        fixed(width: 40, height: 40) {
+          ...GatsbyImageSharpFixed_withWebp
         }
       }
     }

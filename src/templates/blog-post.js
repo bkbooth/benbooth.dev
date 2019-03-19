@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 import Meta from '../components/meta';
 import Layout from '../components/layout';
 import ArticleInfo from '../components/article-info';
 import Article from '../components/styled/article';
+import { HeaderSpacer } from '../components/styled/header';
 
 const BlogPostTemplate = ({ data }) => {
-  const site = data.site.siteMetadata;
   const post = data.markdownRemark;
   const { hero } = post.frontmatter;
   return (
@@ -18,14 +18,15 @@ const BlogPostTemplate = ({ data }) => {
         path={`/${post.fields.slug}`}
         pageType="article"
       />
-      {hero && hero.image && (
+      {hero && hero.image ? (
         <Image
           fluid={hero.image.childImageSharp.fluid}
           alt={hero.alt}
           style={{ maxHeight: '65vh' }}
         />
+      ) : (
+        <HeaderSpacer />
       )}
-      <Link to="/">‹ {site.title}</Link>
       <Article>
         <header>
           <h1>{post.frontmatter.title}</h1>
@@ -44,11 +45,6 @@ export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BLOG_POST_QUERY($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       timeToRead
       excerpt
