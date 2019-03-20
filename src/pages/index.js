@@ -25,11 +25,13 @@ const IndexPage = ({ data }) => {
               <h2>
                 <Link to={`/${post.fields.slug}`}>{post.frontmatter.title}</Link>
               </h2>
+              <ArticleInfo
+                date={post.frontmatter.date}
+                timeToRead={post.timeToRead}
+                withAuthor={false}
+              />
             </header>
             <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-            <footer>
-              <ArticleInfo date={post.frontmatter.date} timeToRead={post.timeToRead} />
-            </footer>
           </Article>
         ))}
       </main>

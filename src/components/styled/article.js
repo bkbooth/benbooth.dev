@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { rhythm } from '../../utils/typography';
+import { Container as ArticleInfoContainer } from '../article-info';
 
 const Article = styled.article`
   margin: ${rhythm(1.5)} ${rhythm(0.5)};
@@ -12,8 +13,12 @@ const Article = styled.article`
     margin: ${rhythm(1.5)} auto;
   }
 
+  /* Overrides for list view */
   h2 {
-    margin-top: 0;
+    margin: 0 0 ${rhythm(0.5)};
+  }
+  h2 + ${ArticleInfoContainer} {
+    margin: ${rhythm(0.5)} 0;
   }
 `;
 

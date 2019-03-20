@@ -30,7 +30,11 @@ const BlogPostTemplate = ({ data }) => {
       <Article>
         <header>
           <h1>{post.frontmatter.title}</h1>
-          <ArticleInfo date={post.frontmatter.date} timeToRead={post.timeToRead} />
+          <ArticleInfo
+            date={post.frontmatter.date}
+            timeToRead={post.timeToRead}
+            withAuthor={true}
+          />
         </header>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <footer>

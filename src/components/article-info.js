@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import format from 'date-fns/format';
 import { rhythm, scale } from '../utils/typography';
 
-const Container = styled.div`
+export const Container = styled.div`
   ${scale(-0.25)}
   display: flex;
   align-items: center;
@@ -18,6 +18,7 @@ const Photo = styled.div`
   position: relative;
   width: 50px;
   height: 50px;
+  margin-right: ${rhythm(0.5)};
   &:before {
     content: '';
     display: block;
@@ -40,9 +41,7 @@ const StyledImage = styled(Image)`
   }
 `;
 
-const Details = styled.div`
-  margin-left: ${rhythm(0.5)};
-`;
+const Details = styled.div``;
 
 const Author = styled.div`
   font-weight: 400;
@@ -56,33 +55,45 @@ const Spacer = styled.span`
   margin: 0 ${rhythm(0.25)};
 `;
 
-const ArticleInfo = ({ date, timeToRead }) => (
-  <StaticQuery
-    query={authorQuery}
-    render={({ site: { siteMetadata: site }, profilePic }) => (
-      <Container>
-        <Photo>
-          <StyledImage
-            fixed={profilePic.childImageSharp.fixed}
-            alt={`Photo of ${site.author.name}`}
-          />
-        </Photo>
-        <Details>
-          <Author>{site.author.name}</Author>
-          <Dateline>
-            <time dateTime={date}>{format(date, 'Do MMM YYYY')}</time>
-            <Spacer>&middot;</Spacer>
-            {timeToRead} min read
-          </Dateline>
-        </Details>
-      </Container>
-    )}
-  />
+const CommonDateline = ({ date, timeToRead }) => (
+  <Dateline>
+    <time dateTime={date}>{format(date, 'Do MMM YYYY')}</time>
+    <Spacer>&middot;</Spacer>
+    {timeToRead} min read
+  </Dateline>
 );
+
+const ArticleInfo = ({ date, timeToRead, withAuthor }) =>
+  withAuthor ? (
+    <StaticQuery
+      query={authorQuery}
+      render={({ site: { siteMetadata: site }, profilePic }) => (
+        <Container>
+          <Photo>
+            <StyledImage
+              fixed={profilePic.childImageSharp.fixed}
+              alt={`Photo of ${site.author.name}`}
+            />
+          </Photo>
+          <Details>
+            <Author>{site.author.name}</Author>
+            <CommonDateline date={date} timeToRead={timeToRead} />
+          </Details>
+        </Container>
+      )}
+    />
+  ) : (
+    <Container>
+      <Details>
+        <CommonDateline date={date} timeToRead={timeToRead} />
+      </Details>
+    </Container>
+  );
 
 ArticleInfo.propTypes = {
   date: PropTypes.string.isRequired,
   timeToRead: PropTypes.number.isRequired,
+  withAuthor: PropTypes.bool.isRequired,
 };
 
 export default ArticleInfo;
