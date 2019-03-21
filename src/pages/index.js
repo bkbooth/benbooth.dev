@@ -1,9 +1,9 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Meta from '../components/meta';
 import Layout from '../components/layout';
 import Welcome from '../components/welcome';
-import ArticleInfo from '../components/article-info';
+import ArticleMini from '../components/article-mini';
 import Article from '../components/styled/article';
 import { HeaderSpacer } from '../components/styled/header';
 
@@ -17,17 +17,7 @@ const IndexPage = ({ data }) => {
       <main>
         {posts.map(({ node: post }) => (
           <Article key={post.id}>
-            <header>
-              <h2>
-                <Link to={`/${post.fields.slug}`}>{post.frontmatter.title}</Link>
-              </h2>
-              <ArticleInfo
-                date={post.frontmatter.date}
-                timeToRead={post.timeToRead}
-                withAuthor={false}
-              />
-            </header>
-            <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+            <ArticleMini article={post} />
           </Article>
         ))}
       </main>

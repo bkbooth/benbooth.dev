@@ -6,7 +6,7 @@ const Article = styled.article`
   margin: ${rhythm(1.5)} ${rhythm(0.5)};
   padding-bottom: ${rhythm(0.5)};
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-  &:last-of-type {
+  &:last-child {
     padding-bottom: 0;
     border: none;
   }

@@ -3,13 +3,16 @@ import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 import Meta from '../components/meta';
 import Layout from '../components/layout';
+import ArticleMini from '../components/article-mini';
 import ArticleInfo from '../components/article-info';
 import Article from '../components/styled/article';
+import NextPrevLinks from '../components/styled/next-prev-links';
 import { HeaderSpacer } from '../components/styled/header';
 
-const BlogPostTemplate = ({ data }) => {
+const BlogPostTemplate = ({ data, pageContext }) => {
   const post = data.markdownRemark;
   const { hero } = post.frontmatter;
+  const { next, previous } = pageContext;
   return (
     <Layout>
       <Meta
@@ -41,6 +44,10 @@ const BlogPostTemplate = ({ data }) => {
           <p>{post.frontmatter.tags.join(', ')}</p>
         </footer>
       </Article>
+      <NextPrevLinks>
+        <li>{previous && <ArticleMini article={previous} isPrevious={true} />}</li>
+        <li>{next && <ArticleMini article={next} isNext={true} />}</li>
+      </NextPrevLinks>
     </Layout>
   );
 };
