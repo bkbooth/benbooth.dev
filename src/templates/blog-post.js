@@ -11,7 +11,14 @@ import { HeaderSpacer } from '../components/styled/header';
 
 const BlogPostTemplate = ({ data, pageContext }) => {
   const post = data.markdownRemark;
-  const { hero } = post.frontmatter;
+  const { hero: localHero } = post.frontmatter;
+  const { childUnsplashHero: unsplashHero } = post;
+  const hero =
+    localHero && localHero.image
+      ? localHero
+      : unsplashHero && unsplashHero.image
+      ? unsplashHero
+      : null;
   const { next, previous } = pageContext;
   return (
     <Layout>
@@ -21,10 +28,10 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         path={`/${post.fields.slug}`}
         pageType="article"
       />
-      {hero && hero.image ? (
+      {hero ? (
         <Image
           fluid={hero.image.childImageSharp.fluid}
-          alt={hero.alt}
+          alt={hero.alt || 'Unsplash image'}
           style={{ maxHeight: '65vh' }}
         />
       ) : (
@@ -38,6 +45,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
             timeToRead={post.timeToRead}
             withAuthor={true}
           />
+          {post.frontmatter.unsplashHero && <p>Unsplash: {post.frontmatter.unsplashHero.id}</p>}
         </header>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <footer>
@@ -74,6 +82,16 @@ export const pageQuery = graphql`
               fluid(maxWidth: 1920) {
                 ...GatsbyImageSharpFluid_withWebp
               }
+            }
+          }
+        }
+      }
+      childUnsplashHero {
+        id
+        image {
+          childImageSharp {
+            fluid(maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }

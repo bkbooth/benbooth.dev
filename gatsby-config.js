@@ -50,6 +50,7 @@ module.exports = {
         ],
       },
     },
+    'gatsby-source-unsplash-images',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-feed',
