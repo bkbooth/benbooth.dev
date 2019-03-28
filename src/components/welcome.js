@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticQuery, graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import Image from 'gatsby-image';
 import { rhythm, scale } from '../utils/typography';
 
@@ -67,45 +67,44 @@ const Description = styled.p`
   margin: 0;
 `;
 
-const Welcome = () => (
-  <StaticQuery
-    query={welcomeQuery}
-    render={({ site: { siteMetadata: site }, profilePic }) => (
-      <Container>
-        <Photo>
-          <StyledImage
-            fixed={profilePic.childImageSharp.fixed}
-            alt={`Photo of ${site.author.name}`}
-          />
-        </Photo>
-        <Details>
-          <Title>{site.title}</Title>
-          <Description>{site.description}</Description>
-        </Details>
-      </Container>
-    )}
-  />
-);
+const Welcome = () => {
+  const {
+    profilePic,
+    site: { siteMetadata: site },
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          author {
+            name
+          }
+        }
+      }
+      profilePic: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+        childImageSharp {
+          fixed(width: 160, height: 160) {
+            ...GatsbyImageSharpFixed_withWebp
+          }
+        }
+      }
+    }
+  `);
+  return (
+    <Container>
+      <Photo>
+        <StyledImage
+          fixed={profilePic.childImageSharp.fixed}
+          alt={`Photo of ${site.author.name}`}
+        />
+      </Photo>
+      <Details>
+        <Title>{site.title}</Title>
+        <Description>{site.description}</Description>
+      </Details>
+    </Container>
+  );
+};
 
 export default Welcome;
-
-const welcomeQuery = graphql`
-  query WELCOME_QUERY {
-    site {
-      siteMetadata {
-        title
-        description
-        author {
-          name
-        }
-      }
-    }
-    profilePic: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-      childImageSharp {
-        fixed(width: 160, height: 160) {
-          ...GatsbyImageSharpFixed_withWebp
-        }
-      }
-    }
-  }
-`;

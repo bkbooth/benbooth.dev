@@ -1,28 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 
 function Meta({ description, lang, meta, path, pageType, title }) {
   const {
     site: { siteMetadata: site },
-  } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            siteUrl
-            author {
-              name
-              twitter
-            }
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          siteUrl
+          author {
+            name
+            twitter
           }
         }
       }
-    `
-  );
+    }
+  `);
 
   const metaDescription = description || site.description;
   const canonicalUrl = `${site.siteUrl}${path}/`;

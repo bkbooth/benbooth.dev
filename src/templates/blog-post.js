@@ -54,8 +54,8 @@ const BlogPostTemplate = ({ data, pageContext }) => {
 
 export default BlogPostTemplate;
 
-export const pageQuery = graphql`
-  query BLOG_POST_QUERY($slug: String!) {
+export const query = graphql`
+  query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       timeToRead
       excerpt

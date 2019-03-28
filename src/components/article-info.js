@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StaticQuery, graphql } from 'gatsby';
-import Image from 'gatsby-image';
 import styled from 'styled-components';
+import { graphql, StaticQuery } from 'gatsby';
+import Image from 'gatsby-image';
 import format from 'date-fns/format';
 import { rhythm, scale } from '../utils/typography';
 
@@ -99,7 +99,7 @@ ArticleInfo.propTypes = {
 export default ArticleInfo;
 
 const authorQuery = graphql`
-  query AUTHOR_QUERY {
+  query {
     site {
       siteMetadata {
         author {
