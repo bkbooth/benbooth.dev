@@ -4,6 +4,8 @@ import requiredIf from 'react-required-if';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCamera, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { rhythm, scale } from '../utils/typography';
 
 const Wrapper = styled.div`
@@ -30,7 +32,11 @@ const Credit = styled.div`
   margin: ${rhythm(0.25)};
   font-family: 'Open Sans', sans-serif;
   color: white;
+
   text-shadow: 0 0 3px black;
+  svg {
+    filter: drop-shadow(0 0 3px black);
+  }
 
   a {
     color: white;
@@ -51,9 +57,15 @@ const Hero = ({ alt, image, unsplash, children }) => (
     {children && <ChildWrapper>{children}</ChildWrapper>}
     {unsplash && (
       <Credit>
-        Photo by <a href={unsplash.user.links.html}>{unsplash.user.name}</a> on{' '}
+        <FontAwesomeIcon icon={faCamera} /> by{' '}
+        <a href={unsplash.user.links.html}>{unsplash.user.name}</a> on{' '}
         <a href={unsplash.links.html}>Unsplash</a>
-        {unsplash.location && <> · {unsplash.location.title}</>}
+        {unsplash.location && (
+          <>
+            {' '}
+            · <FontAwesomeIcon icon={faMapMarkerAlt} /> {unsplash.location.title}
+          </>
+        )}
       </Credit>
     )}
   </Wrapper>
