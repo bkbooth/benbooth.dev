@@ -2,8 +2,10 @@ import styled from 'styled-components';
 import Image from 'gatsby-image';
 import { rhythm, scale } from '../../utils/typography';
 
+const photoSize = '50px';
+
 export const Container = styled.div`
-  ${scale(-0.25)}
+  ${scale(-0.25)};
   display: flex;
   align-items: center;
   margin: ${rhythm(1)} 0;
@@ -12,8 +14,8 @@ export const Container = styled.div`
 
 export const Photo = styled.div`
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: ${photoSize};
+  height: ${photoSize};
   margin-right: ${rhythm(0.5)};
   &:before {
     content: '';
@@ -24,25 +26,23 @@ export const Photo = styled.div`
     width: calc(100% + 10px);
     height: calc(100% + 10px);
     border-radius: 100%;
-    border: 1px solid #0f6d94;
+    border: 1px solid ${props => props.theme.colors.primary};
   }
 `;
 
 export const StyledImage = styled(Image)`
-  width: 50px;
-  height: 50px;
+  width: ${photoSize};
+  height: ${photoSize};
   img {
     border-radius: 100%;
     overflow: hidden;
   }
 `;
 
-export const Author = styled.div`
-  font-weight: 400;
-`;
+export const Author = styled.div``;
 
 export const Dateline = styled.div`
-  opacity: 0.6;
+  color: ${props => props.theme.colors.muted};
 `;
 
 export const Spacer = styled.span`

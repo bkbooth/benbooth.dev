@@ -1,9 +1,10 @@
 import Typography from 'typography';
 import sutroTheme from 'typography-theme-sutro';
 import { css } from 'styled-components';
+import { theme } from './theme';
 
 sutroTheme.overrideThemeStyles = () => ({
-  a: { color: '#0f6d94' },
+  a: { color: theme.colors.primary },
 });
 
 const typography = new Typography(sutroTheme);

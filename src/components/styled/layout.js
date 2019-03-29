@@ -11,7 +11,7 @@ export const Header = styled.header`
   right: 0;
   z-index: 1;
   padding: ${rhythm(1)} ${rhythm(0.5)};
-  @media screen and (min-width: 576px) {
+  @media only screen and (${({ theme }) => theme.breakpoints.min.desktop}) {
     padding: ${rhythm(1)};
   }
 `;
@@ -21,12 +21,17 @@ export const HeaderSpacer = styled.div`
 `;
 
 export const Footer = styled.footer`
-  ${scale(-0.25)}
+  ${scale(-0.25)};
   margin: ${rhythm(2)} 0 0;
   padding: ${rhythm(0.5)};
 
-  a:first-of-type {
-    margin-left: ${rhythm(0.25)};
+  a {
+    &:hover {
+      opacity: 0.75;
+    }
+    &:first-of-type {
+      margin-left: ${rhythm(0.25)};
+    }
   }
 `;
 

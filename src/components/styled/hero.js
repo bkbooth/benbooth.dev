@@ -23,19 +23,19 @@ export const Credit = styled.div`
   left: 0;
   bottom: 0;
   margin: ${rhythm(0.25)};
-  font-family: 'Open Sans', sans-serif;
-  color: white;
+  font-family: ${props => props.theme.fonts.sans};
+  color: ${props => props.theme.colors.light};
 
-  text-shadow: 0 0 3px black;
+  text-shadow: 0 0 3px ${props => props.theme.colors.dark};
   svg {
-    filter: drop-shadow(0 0 3px black);
+    filter: drop-shadow(0 0 3px ${props => props.theme.colors.dark});
   }
 
   a {
-    color: white;
+    color: ${props => props.theme.colors.light};
     text-decoration: underline;
     &:hover {
-      opacity: 0.5;
+      opacity: 0.75;
     }
   }
 `;
