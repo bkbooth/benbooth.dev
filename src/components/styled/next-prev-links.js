@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Container as ArticleInfoContainer } from '../article-info';
+import { Container as ArticleInfoContainer } from './article-info';
 import { rhythm, scale } from '../../utils/typography';
 
-const NextPrevLinks = styled.ul`
+export const NextPrevLinks = styled.ul`
   ${scale(-0.25)}
   display: grid;
   grid-gap: ${rhythm(0.75)};
@@ -23,5 +23,3 @@ const NextPrevLinks = styled.ul`
     }
   }
 `;
-
-export default NextPrevLinks;

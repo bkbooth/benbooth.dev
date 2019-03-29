@@ -5,9 +5,9 @@ import Layout from '../components/layout';
 import Hero from '../components/hero';
 import ArticleMini from '../components/article-mini';
 import ArticleInfo from '../components/article-info';
-import Article from '../components/styled/article';
-import NextPrevLinks from '../components/styled/next-prev-links';
-import { HeaderSpacer } from '../components/styled/header';
+import { Article } from '../components/styled/article';
+import { NextPrevLinks } from '../components/styled/next-prev-links';
+import { HeaderSpacer } from '../components/styled/layout';
 
 const BlogPostTemplate = ({ data, pageContext }) => {
   const post = data.markdownRemark;

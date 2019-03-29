@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 import Hero from '../components/hero';
 import Welcome from '../components/welcome';
 import ArticleMini from '../components/article-mini';
-import Article from '../components/styled/article';
+import { Article } from '../components/styled/article';
 
 const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;

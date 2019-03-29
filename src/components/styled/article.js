@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { rhythm } from '../../utils/typography';
-import { Container as ArticleInfoContainer } from '../article-info';
+import { Container as ArticleInfoContainer } from './article-info';
 
-const Article = styled.article`
+export const Article = styled.article`
   margin: ${rhythm(1.5)} ${rhythm(0.5)};
   padding-bottom: ${rhythm(0.5)};
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
@@ -25,5 +25,3 @@ const Article = styled.article`
     margin: ${rhythm(0.5)} 0;
   }
 `;
-
-export default Article;

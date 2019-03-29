@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import ArticleInfo from '../components/article-info';
+import ArticleInfo from './article-info';
 
 const ArticleMini = ({ article, isNext = false, isPrevious = false }) => (
   <>

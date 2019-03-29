@@ -1,24 +1,8 @@
 import React from 'react';
-import { graphql, Link, useStaticQuery } from 'gatsby';
-import Image from 'gatsby-image';
-import styled from 'styled-components';
-import Header from './styled/header';
-import Footer from './styled/footer';
+import { graphql, useStaticQuery } from 'gatsby';
+import { Footer, Header, Logo, LogoLink } from './styled/layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
-
-const LogoLink = styled(Link)`
-  display: inline-block;
-  line-height: 0; /* don't take up any _extra_ vertical space */
-`;
-
-const Logo = styled(Image)`
-  width: 40px;
-  height: 40px;
-  img {
-    margin: 0;
-  }
-`;
 
 const Layout = ({ children }) => {
   const {
