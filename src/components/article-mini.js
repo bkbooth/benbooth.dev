@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import ArticleInfo from './article-info';
-import { RelativeLabel, Wrapper } from './styled/article-mini';
+import { Container, RelativeLabel } from './styled/article-mini';
 
 const ArticleMini = ({ article, isNext = false, isPrevious = false }) => (
-  <Wrapper alignRight={isPrevious}>
+  <Container alignRight={isPrevious}>
     <header>
       <h2>
         {isPrevious && <RelativeLabel>Older</RelativeLabel>}
@@ -24,7 +24,7 @@ const ArticleMini = ({ article, isNext = false, isPrevious = false }) => (
       />
     </header>
     <p dangerouslySetInnerHTML={{ __html: article.excerpt }} />
-  </Wrapper>
+  </Container>
 );
 
 ArticleMini.propTypes = {

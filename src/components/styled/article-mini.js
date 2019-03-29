@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Container as ArticleInfoContainer } from './article-info';
 import { scale } from '../../utils/typography';
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   @media screen and (min-width: 576px) {
     text-align: ${({ alignRight }) => (alignRight ? 'right' : 'left')};
     ${ArticleInfoContainer} {

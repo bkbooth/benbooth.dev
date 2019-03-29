@@ -5,16 +5,16 @@ import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { ChildWrapper, Credit, Wrapper } from './styled/hero';
+import { ChildContainer, Container, Credit } from './styled/hero';
 
 const Hero = ({ alt, image, unsplash, children }) => (
-  <Wrapper>
+  <Container>
     <Image
       fluid={unsplash ? unsplash.image.childImageSharp.fluid : image.childImageSharp.fluid}
       alt={unsplash ? unsplash.description : alt}
       style={{ maxHeight: '65vh', minHeight: '290px' }}
     />
-    {children && <ChildWrapper>{children}</ChildWrapper>}
+    {children && <ChildContainer>{children}</ChildContainer>}
     {unsplash && (
       <Credit>
         <FontAwesomeIcon icon={faCamera} /> by{' '}
@@ -28,7 +28,7 @@ const Hero = ({ alt, image, unsplash, children }) => (
         )}
       </Credit>
     )}
-  </Wrapper>
+  </Container>
 );
 
 Hero.propTypes = {

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { rhythm, scale } from '../../utils/typography';
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   position: relative;
 `;
 
-export const ChildWrapper = styled.div`
+export const ChildContainer = styled.div`
   position: absolute;
   left: 0;
   right: 0;
