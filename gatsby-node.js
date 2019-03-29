@@ -44,6 +44,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 };
 
 exports.onCreateNode = ({ node, actions: { createNodeField } }) => {
+  // Add slug field to Markdown nodes
   if (node.internal.type === 'MarkdownRemark') {
     createNodeField({
       name: 'slug',
@@ -51,4 +52,28 @@ exports.onCreateNode = ({ node, actions: { createNodeField } }) => {
       node,
     });
   }
+};
+
+exports.sourceNodes = ({ getNodesByType }) => {
+  // Link Unsplash JSON nodes to their associated image file node
+  const fileNodes = getNodesByType('File').filter(node => node.extension !== 'json');
+  const unsplashNodes = getNodesByType('UnsplashJson');
+  unsplashNodes.forEach(unsplashNode => {
+    const fileNode = fileNodes.find(node => node.name === unsplashNode.id);
+    if (!fileNode) return;
+    // Images downloaded to the same directory as the JSON files
+    unsplashNode.image = `./${fileNode.base}`;
+  });
+
+  // Link Markdown nodes to Unsplash JSON nodes
+  getNodesByType('MarkdownRemark')
+    .filter(node => Boolean(node.frontmatter.unsplashHero))
+    .forEach(markdownNode => {
+      const unsplashNode = unsplashNodes.find(
+        node => node.id === markdownNode.frontmatter.unsplashHero
+      );
+      if (!unsplashNode) return;
+      // ___NODE tells Gatsby to link the nodes
+      markdownNode.unsplashHero___NODE = unsplashNode.id;
+    });
 };

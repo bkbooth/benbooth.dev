@@ -8,7 +8,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: ${rhythm(1)} ${rhythm(0.5)} ${rhythm(2)};
+  color: white;
+  text-shadow: 0 0 4px black;
 
   @media screen and (min-width: 576px) {
     flex-direction: row;
@@ -23,22 +24,31 @@ const Photo = styled.div`
   position: relative;
   width: 160px;
   height: 160px;
+  @media screen and (max-width: 575px) {
+    width: 100px;
+    height: 100px;
+  }
   &:before {
     content: '';
     display: block;
     position: absolute;
-    left: -5px;
-    top: -5px;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
+    left: -3px;
+    top: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
     border-radius: 100%;
-    border: 1px solid #0f6d94;
+    border: 3px solid white;
+    box-shadow: 0 0 8px black;
   }
 `;
 
 const StyledImage = styled(Image)`
   width: 160px;
   height: 160px;
+  @media screen and (max-width: 575px) {
+    width: 100px;
+    height: 100px;
+  }
   img {
     border-radius: 100%;
     overflow: hidden;
@@ -55,16 +65,25 @@ const Details = styled.div`
 `;
 
 const Title = styled.h1`
-  ${scale(0.75)}
+  ${scale(0.75)};
   margin-top: 0;
   margin-bottom: ${rhythm(0.5)};
   @media screen and (max-width: 575px) {
+    ${scale(0.5)};
     text-align: center;
   }
 `;
 
 const Description = styled.p`
-  margin: 0;
+  margin: 0 ${rhythm(0.25)};
+  @media screen and (max-width: 575px) {
+    ${scale(-0.25)};
+    line-height: 0.75rem;
+    text-align: center;
+    .longer {
+      display: none;
+    }
+  }
 `;
 
 const Welcome = () => {
@@ -84,24 +103,27 @@ const Welcome = () => {
       }
       profilePic: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
         childImageSharp {
-          fixed(width: 160, height: 160) {
-            ...GatsbyImageSharpFixed_withWebp
+          fluid(maxWidth: 160) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
     }
   `);
+  const [shortDescription, longerDescription] = site.description.split('///');
   return (
     <Container>
       <Photo>
         <StyledImage
-          fixed={profilePic.childImageSharp.fixed}
+          fluid={profilePic.childImageSharp.fluid}
           alt={`Photo of ${site.author.name}`}
         />
       </Photo>
       <Details>
         <Title>{site.title}</Title>
-        <Description>{site.description}</Description>
+        <Description>
+          {shortDescription} <span className="longer">{longerDescription}</span>
+        </Description>
       </Details>
     </Container>
   );

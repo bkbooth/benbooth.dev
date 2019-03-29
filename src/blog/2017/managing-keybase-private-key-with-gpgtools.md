@@ -2,6 +2,7 @@
 title: Managing Keybase private key with GPGTools
 date: 2017-02-09T00:07:00+11:00
 tags: [Keybase, GPG, PGP]
+unsplashHero: C1P4wHhQbjM
 ---
 
 This is not a particularly well-written article. I've found everything here useful, but so irregularly that I always end up Googling and needing to put together info from multiple blog posts so I'm putting it all together here for my reference, and maybe it'll help you if you stumbled across it. ~~At some stage I'll organise this into a proper article.~~ _[Update 2017-04-07]_ I'll probably never actually update this article.

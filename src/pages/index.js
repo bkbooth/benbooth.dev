@@ -2,18 +2,19 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Meta from '../components/meta';
 import Layout from '../components/layout';
+import Hero from '../components/hero';
 import Welcome from '../components/welcome';
 import ArticleMini from '../components/article-mini';
 import Article from '../components/styled/article';
-import { HeaderSpacer } from '../components/styled/header';
 
 const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   return (
     <Layout>
       <Meta />
-      <HeaderSpacer />
-      <Welcome />
+      <Hero unsplash={data.unsplashHero}>
+        <Welcome />
+      </Hero>
       <main>
         {posts.map(({ node: post }) => (
           <Article key={post.id}>
@@ -44,6 +45,9 @@ export const query = graphql`
           }
         }
       }
+    }
+    unsplashHero: unsplashJson(id: { eq: "3c_akLTXTek" }) {
+      ...UnsplashHeroFields
     }
   }
 `;

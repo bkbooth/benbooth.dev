@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Image from 'gatsby-image';
 import Meta from '../components/meta';
 import Layout from '../components/layout';
+import Hero from '../components/hero';
 import ArticleMini from '../components/article-mini';
 import ArticleInfo from '../components/article-info';
 import Article from '../components/styled/article';
@@ -21,12 +21,10 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         path={`/${post.fields.slug}`}
         pageType="article"
       />
-      {hero && hero.image ? (
-        <Image
-          fluid={hero.image.childImageSharp.fluid}
-          alt={hero.alt}
-          style={{ maxHeight: '65vh' }}
-        />
+      {post.unsplashHero ? (
+        <Hero unsplash={post.unsplashHero} />
+      ) : hero ? (
+        <Hero image={hero.image} alt={hero.alt} />
       ) : (
         <HeaderSpacer />
       )}
@@ -77,6 +75,9 @@ export const query = graphql`
             }
           }
         }
+      }
+      unsplashHero {
+        ...UnsplashHeroFields
       }
     }
   }
