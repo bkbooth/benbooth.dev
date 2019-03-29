@@ -4,6 +4,8 @@ import Image from 'gatsby-image';
 import styled from 'styled-components';
 import Header from './styled/header';
 import Footer from './styled/footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const LogoLink = styled(Link)`
   display: inline-block;
@@ -53,9 +55,13 @@ const Layout = ({ children }) => {
       </Header>
       {children}
       <Footer>
-        © {new Date().getFullYear()} {author.name} |{' '}
-        <a href={`https://twitter.com/${author.twitter}`}>Twitter</a> |{' '}
-        <a href={`https://github.com/${author.github}`}>GitHub</a>
+        © {new Date().getFullYear()} {author.name}
+        <a href={`https://twitter.com/${author.twitter}`}>
+          <FontAwesomeIcon icon={faTwitter} />
+        </a>{' '}
+        <a href={`https://github.com/${author.github}`}>
+          <FontAwesomeIcon icon={faGithub} />
+        </a>
       </Footer>
     </>
   );

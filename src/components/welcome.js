@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
 import Image from 'gatsby-image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { rhythm, scale } from '../utils/typography';
 
 const Container = styled.div`
@@ -9,7 +11,11 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   color: white;
+
   text-shadow: 0 0 4px black;
+  svg {
+    filter: drop-shadow(0 0 4px black);
+  }
 
   @media screen and (min-width: 576px) {
     flex-direction: row;
@@ -72,6 +78,13 @@ const Title = styled.h1`
     ${scale(0.5)};
     text-align: center;
   }
+
+  a {
+    color: white;
+    &:first-of-type {
+      margin-left: ${rhythm(0.75)};
+    }
+  }
 `;
 
 const Description = styled.p`
@@ -98,6 +111,8 @@ const Welcome = () => {
           description
           author {
             name
+            twitter
+            github
           }
         }
       }
@@ -120,7 +135,15 @@ const Welcome = () => {
         />
       </Photo>
       <Details>
-        <Title>{site.title}</Title>
+        <Title>
+          {site.title}
+          <a href={`https://twitter.com/${site.author.twitter}`}>
+            <FontAwesomeIcon icon={faTwitter} size="xs" />
+          </a>{' '}
+          <a href={`http://github.com/${site.author.github}`}>
+            <FontAwesomeIcon icon={faGithub} size="xs" />
+          </a>
+        </Title>
         <Description>
           {shortDescription} <span className="longer">{longerDescription}</span>
         </Description>
