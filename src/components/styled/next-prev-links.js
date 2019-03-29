@@ -5,7 +5,7 @@ import { rhythm, scale } from '../../utils/typography';
 export const NextPrevLinks = styled.ul`
   ${scale(-0.25)}
   display: grid;
-  grid-gap: ${rhythm(0.75)};
+  grid-gap: ${rhythm(2)};
   margin: ${rhythm(1)} 0 0;
   padding: ${rhythm(0.5)};
   list-style: none;
