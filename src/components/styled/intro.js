@@ -52,7 +52,7 @@ export const Photo = styled.div`
 export const StyledImage = styled(Image)`
   width: ${imageSizes.sm};
   height: ${imageSizes.sm};
-  @media screen and (${props => props.theme.breakpoints.min.desktop}) {
+  @media only screen and (${props => props.theme.breakpoints.min.desktop}) {
     width: ${imageSizes.lg};
     height: ${imageSizes.lg};
   }
@@ -63,10 +63,10 @@ export const StyledImage = styled(Image)`
 `;
 
 export const Details = styled.div`
-  @media screen and (${props => props.theme.breakpoints.max.mobile}) {
+  @media only screen and (${props => props.theme.breakpoints.max.mobile}) {
     margin-top: ${rhythm(0.5)};
   }
-  @media screen and (${props => props.theme.breakpoints.min.desktop}) {
+  @media only screen and (${props => props.theme.breakpoints.min.desktop}) {
     margin-left: ${rhythm(1)};
   }
 `;
@@ -76,7 +76,7 @@ export const Title = styled.h1`
   text-align: center;
   margin-top: 0;
   margin-bottom: ${rhythm(0.5)};
-  @media screen and (${props => props.theme.breakpoints.min.desktop}) {
+  @media only screen and (${props => props.theme.breakpoints.min.desktop}) {
     ${scale(0.75)};
     text-align: left;
   }
@@ -94,11 +94,16 @@ export const Title = styled.h1`
 
 export const Description = styled.p`
   margin: 0 ${rhythm(0.25)};
-  @media screen and (${props => props.theme.breakpoints.max.mobile}) {
+  @media only screen and (${props => props.theme.breakpoints.max.mobile}) {
     ${scale(-0.25)};
     line-height: 0.75rem;
     text-align: center;
     .longer {
+      display: none;
+    }
+  }
+  @media only screen and (${props => props.theme.breakpoints.min.desktop}) {
+    .shorter {
       display: none;
     }
   }

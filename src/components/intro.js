@@ -2,9 +2,9 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Container, Description, Details, Photo, StyledImage, Title } from './styled/welcome';
+import { Container, Description, Details, Photo, StyledImage, Title } from './styled/intro';
 
-const Welcome = () => {
+const Intro = () => {
   const {
     profilePic,
     site: { siteMetadata: site },
@@ -14,6 +14,7 @@ const Welcome = () => {
         siteMetadata {
           title
           description
+          shortDescription
           author {
             name
             twitter
@@ -30,7 +31,6 @@ const Welcome = () => {
       }
     }
   `);
-  const [shortDescription, longerDescription] = site.description.split('///');
   return (
     <Container>
       <Photo>
@@ -50,11 +50,12 @@ const Welcome = () => {
           </a>
         </Title>
         <Description>
-          {shortDescription} <span className="longer">{longerDescription}</span>
+          <span className="shorter">{site.shortDescription}</span>
+          <span className="longer">{site.description}</span>
         </Description>
       </Details>
     </Container>
   );
 };
 
-export default Welcome;
+export default Intro;

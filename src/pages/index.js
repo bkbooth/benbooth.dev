@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import Meta from '../components/meta';
 import Layout from '../components/layout';
 import Hero from '../components/hero';
-import Welcome from '../components/welcome';
+import Intro from '../components/intro';
 import ArticleMini from '../components/article-mini';
 import { Article } from '../components/styled/article';
 
@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
     <Layout>
       <Meta />
       <Hero unsplash={data.unsplashHero}>
-        <Welcome />
+        <Intro />
       </Hero>
       <main>
         {posts.map(({ node: post }) => (
