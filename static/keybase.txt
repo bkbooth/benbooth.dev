@@ -1,0 +1,208 @@
+==================================================================
+https://keybase.io/bkbooth
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://benbooth.dev
+  * I am bkbooth (https://keybase.io/bkbooth) on keybase.
+  * I have a public key ASBr4eW61LYfDauP-qqwbLdv4hKci2Rh25fqKdudZdx8tQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "010195b86cd7b88b1cddf90ae45c4fcd75561e583788425520a00bff82daea062fb20a",
+      "host": "keybase.io",
+      "kid": "01206be1e5bad4b61f0dab8ffaaab06cb76fe2129c8b6461db97ea29db9d65dc7cb50a",
+      "uid": "3e684184ebd4dfe6997d5031e60fc919",
+      "username": "bkbooth"
+    },
+    "merkle_root": {
+      "ctime": 1554031668,
+      "hash": "7348be217832018b0f17dfcdba1fe022d4ef2ffa9e2675e44b639dece6434f379ce8d0cb94fdccaaeb38a5081f9f8697c7f8a59e5ac14b04d51def608247ef41",
+      "hash_meta": "4579f08fa62120c0fa559c2cd32c877caac5f3e2721f8e0e878a679c47a0a0bd",
+      "seqno": 5065264
+    },
+    "service": {
+      "entropy": "tuFAyJdBWJhgjrNlewjFCokz",
+      "hostname": "benbooth.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "3.1.2"
+  },
+  "ctime": 1554031826,
+  "expire_in": 504576000,
+  "prev": "f72190601b58079e003c206396a587c51dfb345b3c43671a8e18baceeda55399",
+  "seqno": 70,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEga+HlutS2Hw2rj/qqsGy3b+ISnItkYduX6inbnWXcfLUKp3BheWxvYWTESpcCRsQg9yGQYBtYB54APCBjlqWHxR37NFs8Q2cajhi6zu2lU5nEILOWw7YTs7Jsr+mX1CwaAlEqqCOYiajbgYoYIcfD0B6gAgHCo3NpZ8RAI52hAV2XgD2szOsBXmn61p3BxmkiJLnSzZAFNrDHID4mcbCHGiELh5nm4A0JHH23fnQ0XN6JeYDFx2uPuB/iAKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIMnuRSJldPdr8xZgICun131EIqhetxRMe7BO7//SNhL6o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bkbooth
+
+==================================================================
+
+
+==================================================================
+https://keybase.io/bkbooth
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://benbooth.co
+  * I am bkbooth (https://keybase.io/bkbooth) on keybase.
+  * I have a public key with fingerprint 7B72 7CC5 C2F2 C945 6B38  E229 07E6 DF79 77A8 6371
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "010195b86cd7b88b1cddf90ae45c4fcd75561e583788425520a00bff82daea062fb20a",
+      "fingerprint": "7b727cc5c2f2c9456b38e22907e6df7977a86371",
+      "host": "keybase.io",
+      "key_id": "07e6df7977a86371",
+      "kid": "010195b86cd7b88b1cddf90ae45c4fcd75561e583788425520a00bff82daea062fb20a",
+      "uid": "3e684184ebd4dfe6997d5031e60fc919",
+      "username": "bkbooth"
+    },
+    "service": {
+      "hostname": "benbooth.co",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1521165393,
+  "expire_in": 157680000,
+  "prev": "727f0f4f7f744e7e3f858e22234e798a3d198524ffe1203068b044ec8bd8f60c",
+  "seqno": 45,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.76
+Comment: https://keybase.io/crypto
+
+yMM+AnicrZJrTBRXFMd3EQS3JeuraSpIyxS1QSDzujN3Niltqn1gKiICGthK5nEH
+hl12lt1lAZHUZIPFxird4CNCJRIUqZgGsbYoVqDUIo+iBaLWanlUmvBwS2lDW6Pt
+DK2f+rX3y80593f+95x/Tlf4IoPJGDrxQ0nRabHA2NtxuNCQeSZmaykmqFIJZinF
+bGjhQnYJuT3ZNkXCLBhO4AQHBMiIEitAKBCiJMkcziMaiLSsJQFgCAQgxUJIkwCQ
+OI/jgixDUuIRjzOkLGgpLA6TFUcOcjldisOjybICS7KiCERSJkWOBoxAQUSSHM4i
+RpJZjmV5yFAsoRXmqm69QmtO4N0oQVG1nBZk/9Pef/n/ue/CBTkKMZAmII0EiZZk
+xHAcKwGcIhCDyyJHcDroRi4Hn480WrAJqurJxcriMC3pVUSk+6oP8gRAjgUiQdSn
+cbpUjyqqdu0h1+Nxui16oafEqZNFSMj+VyNbUByS5qJW4UUut6I6MAuhkaJH0UUJ
+QBIEAyiOisNQsVNxoWxFJwDLQFw7+j/Iq3tPsjIu0zIrszSNWETJEOjmk5QWcZCn
+JIKDgKRlGREkTuEMFHANFKEgQZnBRUyfqsChYhYaaH3yOZqmW8lx8J5CF8LKOjus
+wQajybA4JEhfL4NpydInSxfsNP/1WteRN9jkL0eYJqICe2Vw9szunz+0T/RRzc8+
+6E5fu3lp9f0rJvO++YyL4KQvPpaLxsWmo0P1zM6bq0/0fhuS+lZj/j3j/Kt4W0He
+/RzQdelEVI3akvZ19HRd82TAlEunVRMXyv3PXI6ydjxY/VtPdORN47D5A+FxILSQ
++CzEufyXQ56yAWiomxsbHbH1D9YGymfmrNY1Kd90nq5c/HowniLVtTQ6rOmD9qq8
+RRO7DLW3x4i5l7ja7jarO8m3cev8rLF0RXGLLyZ2NLEm6xG1strvXzm7fpV3z/av
+3r5ScSBr+BPhbOVuMPRraibwThYlb5/2G0vt0ZE7Zv5sDOwX8x+uW+fA1kYYN7T2
+VEXd2miJm884ZFnf1uTfZk58lB76RU3+57N111esKQ9/uR20Kj+OJfYmxPgjlm1I
+fnPzwZGGO48/HtgUkTjTeMwf1n43JyvthV15hkDmaGVzm2+Kunq8bSpo0LbKdC00
+fuepn4Zd7od8+jtcd/gfQ9eOjsP3x9vHxi+3epdUmaYHvceuH7fvm+y6cXuP/FGL
+udt/tdd3+NOGd9F3/WWwf2pH57a46rMv7t0fn1WVkhE2dyPpDp9fLg3UTtwKGv7+
+ufb3ztXfazjQELHXfTHxaXNfbGVx5Mkt9b+bKzblHumZEqi+p0LESxeofl+YbVnD
++efP312e1HEOpo78DY0Hw2I=
+=iXb5
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bkbooth
+
+==================================================================
+
+
+==================================================================
+https://keybase.io/bkbooth
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://benkbooth.com
+  * I am bkbooth (https://keybase.io/bkbooth) on keybase.
+  * I have a public key with fingerprint 7B72 7CC5 C2F2 C945 6B38  E229 07E6 DF79 77A8 6371
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "010195b86cd7b88b1cddf90ae45c4fcd75561e583788425520a00bff82daea062fb20a",
+            "fingerprint": "7b727cc5c2f2c9456b38e22907e6df7977a86371",
+            "host": "keybase.io",
+            "key_id": "07e6df7977a86371",
+            "kid": "010195b86cd7b88b1cddf90ae45c4fcd75561e583788425520a00bff82daea062fb20a",
+            "uid": "3e684184ebd4dfe6997d5031e60fc919",
+            "username": "bkbooth"
+        },
+        "service": {
+            "hostname": "benkbooth.com",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1498002230,
+    "expire_in": 157680000,
+    "prev": "039672f29816c77f96560b2cacdc537b5b6d8c4f7019d60b18b776f352da9f2c",
+    "seqno": 40,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.72
+Comment: https://keybase.io/crypto
+
+yMNCAnicrVJrUFRlGF7EhWBS7GIFyCgnL7O5wblfViSpqUAah1FHBlxa95zzHTix
+7Fl3D8iuSZhAQHlpFBMLYcyGdQYZMDBMxlg1ZFCLi+VlDNQFZkC8MluEWH1H81d/
++/XN97zP83zv+3zvmVnBuvCg0JFB9yavsDHonG9fvi4j5Vt6M8IrohsxbUZyweMD
+2ETgUi25soiYEBRDMY7iWVoQGZ5leUwQRYlDrYCkBFKCIEXRGKBYgmFZEqcoHLWi
+KC9JLC5agRWlcYmHEGJEJNmeDZwOp2xXoS3DMzgjCJSAS7jAkRTNEyzAcQ5lAC1K
+DMcwVpYmGAwKcxSXpoDN8VYXiJMViMGL5Ul7/+X/z33nP7YjAM2SGEsCXiRFCdAc
+x4gUSmCARiWBwziN6AJOuzUPQDafyyuKmoNsMSIQLJAFoOWqDfKUAOxPKHGCkge1
+DqeiKoJig6UcVXW4TJpUdTs07ibAW/51sfCyXYQ5QkUBcLpkxY6YMMgUVFmzxUiO
+RVEcJ1AjAgodshNYZI1BMTTEUVR7BxRo4RAczcDkORajBYaROJqiUR4XrIIoUATD
+UzwtsjAmBmYowgrG8gxDSwQFw+HghyHaXBvtCmIioalqzYaeLjnbblXznQDZcspn
+nqkLCteF6GdoC6YLD5vzdO1GoiMevSSSJcLo0UBnQ+XdVTGz+6O+vtEd1N491fpH
+dfMP7xUwS2v7EisXp4aq31wqGR7o0Kesev+eWZeaqu/xXk7J8uy/VXGk+Re3yTPV
+Nl0R6h5YnLi7PTpW/uTR4RW29J/rz7raIpp8094dnQtOy5EldTeyPrhk6L0Qa3sr
+ZXm2J6n+oDsi6YumIlKuyNZf5H/VRa+u+rtGutxvO2Uv1Z+fv6jI9pVhZ+DAxE/H
+ieRnJ2JqG3eeKF13JaTw+T/95lL/q5P+zLLIqamkDb59zzVwhrqaMSUq9a/PdwTK
+a94Vtl/XdxYfOnsyYXph32BeuKPQMvTxlz8Glt8ce3vd/OShqjvB3/XN3N3Cxg+/
+fLx55ew17XHz0hz9nZHFo2m+W8iHiZ7uWQvXS96ERRsutlp6ohwrPxvauzpeuv/7
+CeIN35LXkT3Jo9sNdOy8Nn/04WPF1a6Prj6YDvNHngs2mu6+GSjito4/zHR1DVV1
+DeydUdb3TK/53hF/3u2crcqSNRORgfJt5mWTIXXr5WH30JWgwbkrThelXfMEGz5t
+CGn87cX472Me1E5O3hk5ek2Za3RkvnJSGr9vaBorGqlf6ymTWtLfqU642puk73be
+VjIOlt/cr6a/Nr6Ae6F/Ost5rIFq6ejqQ0avN+46k9fRU3N+maV1LX2hMsNRq5o7
+wjLKlu5xHmjP7zxU63247R87Lc1e
+=i1Jq
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bkbooth
+
+==================================================================
