@@ -1,0 +1,8 @@
+# Redirect domain aliases to primary domain
+https://benbooth.co/* https://benbooth.dev/:splat 301!
+https://www.benbooth.co/* https://benbooth.dev/:splat 301!
+https://benkbooth.com/* https://benbooth.dev/:splat 301!
+https://www.benkbooth.com/* https://benbooth.dev/:splat 301!
+
+# Optional: Redirect default Netlify subdomain to primary domain
+https://benboothdev.netlify.com/* https://benbooth.dev/:splat 301!
