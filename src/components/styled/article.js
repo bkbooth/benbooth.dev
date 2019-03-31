@@ -11,7 +11,7 @@ export const Article = styled.article`
     border: none;
   }
 
-  @media screen and (${props => props.theme.breakpoints.min.desktop}) {
+  @media only screen and (${props => props.theme.breakpoints.min.desktop}) {
     width: ${props => props.theme.sizes.content.width};
     max-width: ${props => props.theme.sizes.content.maxWidth};
     margin: ${rhythm(1.5)} auto;

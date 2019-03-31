@@ -9,7 +9,7 @@ export const NextPrevLinks = styled.ul`
   margin: ${rhythm(1)} 0 0;
   padding: ${rhythm(0.5)};
   list-style: none;
-  @media screen and (${props => props.theme.breakpoints.min.desktop}) {
+  @media only screen and (${props => props.theme.breakpoints.min.desktop}) {
     grid-template-columns: 1fr 1fr;
   }
   li {

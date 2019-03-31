@@ -3,7 +3,7 @@ import { Container as ArticleInfoContainer } from './article-info';
 import { scale } from '../../utils/typography';
 
 export const Container = styled.div`
-  @media screen and (${props => props.theme.breakpoints.min.desktop}) {
+  @media only screen and (${props => props.theme.breakpoints.min.desktop}) {
     text-align: ${props => (props.alignRight ? 'right' : 'left')};
     ${ArticleInfoContainer} {
       justify-content: ${props => (props.alignRight ? 'flex-end' : 'flex-start')};
