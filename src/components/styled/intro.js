@@ -87,7 +87,7 @@ export const Title = styled.h1`
       opacity: 0.75;
     }
     &:first-of-type {
-      margin-left: ${rhythm(0.75)};
+      margin-left: ${rhythm(0.5)};
     }
   }
 `;
