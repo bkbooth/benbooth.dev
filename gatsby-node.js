@@ -1,4 +1,5 @@
 const path = require('path');
+const { createRemoteFileNode } = require('gatsby-source-filesystem');
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const result = await graphql(`
@@ -43,7 +44,14 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   });
 };
 
-exports.onCreateNode = ({ node, actions: { createNodeField } }) => {
+exports.onCreateNode = async ({
+  actions: { createNode, createNodeField },
+  cache,
+  createContentDigest,
+  getNodesByType,
+  node,
+  store,
+}) => {
   // Add slug field to Markdown nodes
   if (node.internal.type === 'MarkdownRemark') {
     createNodeField({
@@ -52,20 +60,35 @@ exports.onCreateNode = ({ node, actions: { createNodeField } }) => {
       node,
     });
   }
+
+  // Link Unsplash JSON nodes to their associated image file node
+  if (node.internal.type === 'UnsplashJson') {
+    const localFileNode = getNodesByType('File')
+      .filter(fileNode => fileNode.extension !== 'json')
+      .find(fileNode => fileNode.name === node.id);
+    if (localFileNode) {
+      // Images downloaded to the same directory as the JSON files
+      node.image = `./${localFileNode.base}`;
+    } else {
+      // Link to image as remote file node
+      const remoteFileNode = await createRemoteFileNode({
+        url: node.urls.raw,
+        store,
+        cache,
+        createNode,
+        createNodeId: createContentDigest,
+      });
+      if (remoteFileNode) {
+        // ___NODE tells Gatsby to link the nodes
+        node.image___NODE = remoteFileNode.id;
+      }
+    }
+  }
 };
 
 exports.sourceNodes = ({ getNodesByType }) => {
-  // Link Unsplash JSON nodes to their associated image file node
-  const fileNodes = getNodesByType('File').filter(node => node.extension !== 'json');
-  const unsplashNodes = getNodesByType('UnsplashJson');
-  unsplashNodes.forEach(unsplashNode => {
-    const fileNode = fileNodes.find(node => node.name === unsplashNode.id);
-    if (!fileNode) return;
-    // Images downloaded to the same directory as the JSON files
-    unsplashNode.image = `./${fileNode.base}`;
-  });
-
   // Link Markdown nodes to Unsplash JSON nodes
+  const unsplashNodes = getNodesByType('UnsplashJson');
   getNodesByType('MarkdownRemark')
     .filter(node => Boolean(node.frontmatter.unsplashHero))
     .forEach(markdownNode => {

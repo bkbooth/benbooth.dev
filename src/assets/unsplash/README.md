@@ -2,10 +2,10 @@
 
 ## Download the image and JSON
 
-1. Find an image on https://unsplash.com/
-2. Download the image to `src/assets/unsplash/[UNSPLASH_ID].jpg`
-3. Get the JSON from https://api.unsplash.com/photos/[UNSPLASH_ID]?client_id=[UNSPLASH_API_ACCESS_KEY] and...
-4. Save it as `src/assets/unsplash/[UNSPLASH_ID].json`
+1. Find an image on https://unsplash.com/ and take note of it's ID
+2. Get the JSON from https://api.unsplash.com/photos/[UNSPLASH_ID]?client_id=[UNSPLASH_API_ACCESS_KEY] and...
+3. Save it as `src/assets/unsplash/[UNSPLASH_ID].json`
+4. Optionally download the image to `src/assets/unsplash/[UNSPLASH_ID].jpg`
 
 ## Use it in Markdown frontmatter
 
