@@ -2,6 +2,7 @@
 title: Running Ghost with PM2 under a different user account on a Linux server
 date: 2015-06-15T13:17:00+10:00
 tags: [Ghost, Node.js, Linux]
+unsplashHero: 4cFMBSmZcnc
 ---
 
 When I first setup my [ghost] blog on my own server (a self-managed [Linode] which has been great and I highly recommend them), I installed [Node.js] directly under my main user account. I eventually ran into the problem of needing/wanting to use different versions of [Node.js] for different applications, so I uninstalled [Node.js] and installed/used [nvm] instead. It occurred to me that I might be better off running the [ghost] application under a different user account, so that it could manage it's own [nvm]/[Node.js] versions and global [npm] packages. I did nothing about it at the time, but I recently wanted to be able to run two applications which needed different [Node.js] versions simultaneously.

@@ -2,6 +2,7 @@
 title: Writing a JavaScript Promises Library
 date: 2015-05-04T22:16:00+10:00
 tags: [Programming, JavaScript, Promises]
+unsplashHero: A8iDBict-m8
 ---
 
 > **[Updated 29/05/2015](#update20150529)**

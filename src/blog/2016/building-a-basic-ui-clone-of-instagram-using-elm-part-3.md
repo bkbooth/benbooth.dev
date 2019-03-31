@@ -2,6 +2,7 @@
 title: Building a basic UI-clone of Instagram using Elm - Part 3
 date: 2016-12-07T23:34:00+11:00
 tags: [Programming, Elm, Functional]
+unsplashHero: vaTiOuT-Y4s
 ---
 
 This article is a part of a series, if you haven't read the first or second parts yet you can read them [here](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-1/) and [here](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-2/). Alternatively you can get the code from the end of the last article [here](https://github.com/bkbooth/Elmstagram/tree/part2) and continue along. You can view the finished app [here][demo] and all of the source code is available [here][repo].

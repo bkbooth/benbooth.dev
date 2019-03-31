@@ -2,6 +2,7 @@
 title: Simple JavaScript template engine
 date: 2013-12-30T00:11:00+11:00
 tags: [Programming, JavaScript]
+unsplashHero: 4NlLMwdFoLY
 ---
 
 Around 6 months ago while learning JavaScript properly and looking for work as a JavaScript developer I started working on a pure HTML/CSS/JS version of Tetris ([BlockDrop](https://blockdrop.benbooth.co) - [github](https://github.com/bkbooth/BlockDrop)) to experiment and play with my new skills. It's been a while since I've touched it but I just started looking at it again recently and there's quite a lot that I'd do differently now so I started rewriting it from the ground up. I haven't got that far with the actual rewrite but one of the things I really wanted to do differently and therefore implemented it first was a simple templating engine so that I could get all the HTML out of my JavaScript.
