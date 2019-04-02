@@ -3,7 +3,7 @@ module.exports = {
     title: 'Ben Booth',
     description: `Hi 👋 I'm Ben and I make things for the web. Sometimes I write things here and sometimes I talk about things. I'm also a husband & father, football (soccer) addict and a Christian.`,
     shortDescription: `Hi 👋 I'm Ben and I make things for the web.`,
-    siteUrl: 'https://benboothdev.netlify.com', // TODO: change to benbooth.dev before go live!
+    siteUrl: 'https://benbooth.dev',
     author: {
       name: 'Ben Booth',
       bio:
