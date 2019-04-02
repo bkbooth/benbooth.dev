@@ -4,7 +4,7 @@ export const theme = {
     dark: 'hsla(0, 0%, 0%, 0.9)',
     light: 'hsl(0, 0%, 95%)',
     muted: 'hsl(0, 0%, 50%)',
-    border: 'hsl(0, 0%, 87.5%)',
+    border: 'hsl(0, 0%, 90%)',
   },
   fonts: {
     sans: `'Open Sans', sans-serif`,
