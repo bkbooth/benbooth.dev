@@ -31,21 +31,19 @@ const Intro = () => {
       }
     }
   `);
+  const { author } = site;
   return (
     <Container>
       <Photo>
-        <StyledImage
-          fluid={profilePic.childImageSharp.fluid}
-          alt={`Photo of ${site.author.name}`}
-        />
+        <StyledImage fluid={profilePic.childImageSharp.fluid} alt={`Photo of ${author.name}`} />
       </Photo>
       <Details>
         <Title>
           {site.title}
-          <a href={`https://twitter.com/${site.author.twitter}`}>
+          <a href={`https://twitter.com/${author.twitter}`}>
             <FontAwesomeIcon icon={faTwitter} size="xs" />
           </a>{' '}
-          <a href={`http://github.com/${site.author.github}`}>
+          <a href={`https://github.com/${author.github}`}>
             <FontAwesomeIcon icon={faGithub} size="xs" />
           </a>
         </Title>
