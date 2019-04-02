@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { GlobalStyle } from './styled/global';
 import { Footer, Header, Logo, LogoLink } from './styled/layout';
 import { theme } from '../utils/theme';
 
@@ -35,6 +36,7 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <>
+        <GlobalStyle />
         <Header>
           <LogoLink to="/">
             <Logo fixed={bbLogo.childImageSharp.fixed} alt="Bb logo" />
