@@ -5,6 +5,7 @@ export const theme = {
     light: 'hsl(0, 0%, 95%)',
     muted: 'hsl(0, 0%, 50%)',
     border: 'hsl(0, 0%, 90%)',
+    codeBg: '#f6fbfd',
   },
   fonts: {
     sans: `'Open Sans', sans-serif`,

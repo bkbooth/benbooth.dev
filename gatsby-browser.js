@@ -3,4 +3,4 @@ import 'typeface-merriweather';
 import 'typeface-open-sans';
 
 // Prism.js theme
-import 'prismjs/themes/prism-solarizedlight.css';
+import 'prism-themes/themes/prism-ghcolors.css';
