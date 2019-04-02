@@ -1,6 +1,7 @@
 ---
 title: Managing Keybase private key with GPGTools
 date: 2017-02-09T00:07:00+11:00
+description: Import and manage your Keybase keys from with GPGTools. Use your Keybase keys to sign Git commits and show as verified on GitHub.
 tags: [Keybase, GPG, PGP]
 unsplashHero: C1P4wHhQbjM
 ---
@@ -15,7 +16,7 @@ Export your existing public and private keys from [Keybase][], save them locally
 
 Import both keys into your local [GPGTools][]:
 
-```none
+```console
 gpg --allow-secret-key-import --import keybase-private.key
 gpg --import keybase-public.key
 ```
@@ -24,13 +25,13 @@ Delete both the public and private key files.
 
 Optionally, edit `~/.gnupg/gpg.conf` to set the default key. Firstly get the ID of the key:
 
-```none
+```console
 gpg --list-secret-keys
 ```
 
 Then add it to `~/.gnupg/gpg.conf` with this line:
 
-```none
+```console
 default-key [YOUR_KEY_ID]
 ```
 
@@ -38,7 +39,7 @@ default-key [YOUR_KEY_ID]
 
 Make any required changes to the key with the `gpg` command-line tool:
 
-```none
+```console
 gpg --edit-key [YOUR_KEY_ID]
 ```
 
@@ -60,7 +61,7 @@ Don't forget to `save` after making your changes!
 
 Now that you've updated your local copy of the key, push it back to [Keybase][] with:
 
-```none
+```console
 keybase pgp update
 ```
 
@@ -68,7 +69,7 @@ keybase pgp update
 
 Export your local key to the clipboard with:
 
-```none
+```console
 keybase pgp export | pbcopy
 ```
 
@@ -84,7 +85,7 @@ Add `-S [YOUR_KEY_ID]` or `--gpg-sign=[YOUR_KEY_ID]` to your `git commit` comman
 
 Run these lines to update your global config to sign git commits by default:
 
-```none
+```console
 git config --global user.signingkey [YOUR_KEY_ID]
 git config --global core.gpgsign true
 ```

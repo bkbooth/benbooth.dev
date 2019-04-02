@@ -1,21 +1,22 @@
 ---
 title: Writing a JavaScript Promises Library
 date: 2015-05-04T22:16:00+10:00
-tags: [Programming, JavaScript, Promises]
+tags: [Coding, JavaScript, Promise]
+description: Write an implementation of a JavaScript Promises library, and hopefully help you reading it and me writing this to better understand the workings of Promises.
 unsplashHero: A8iDBict-m8
 ---
 
 > **[Updated 29/05/2015](#update20150529)**
 
-My first exposure to JavaScript Promises was at a JavaScript [meetup](http://www.sydjs.com/) a couple of years ago and despite being a talk by a very good presenter, it was an early stage in my JavaScript understanding and most of the topic went over my head. Nowadays Promises are quite common and most developers will probably have had some level of exposure, whether they understand them or not. They're part of the EcmaScript 6 (ES6) specification so if you don't understand them, now is a great time to learn.
+My first exposure to JavaScript Promises was at a JavaScript [meetup](https://www.sydjs.com/) a couple of years ago and despite being a talk by a very good presenter, it was an early stage in my JavaScript understanding and most of the topic went over my head. Nowadays Promises are quite common and most developers will probably have had some level of exposure, whether they understand them or not. They're part of the EcmaScript 6 (ES6) specification so if you don't understand them, now is a great time to learn.
 
-We're going to write an implementation of a JavaScript Promises library, and hopefully this helps you reading it and me writing it to better understand the workings of Promises. Let's dive right into the example and a bit of an explanation of how Promises are used. For more information, check out [Dr. Axel Rauschmayer](https://twitter.com/rauschma)'s article on [ES6 Promises](http://www.2ality.com/2014/10/es6-promises-api.html) or [Jake Archibald](http://twitter.com/jaffathecake)'s article on [Javascript Promises](http://www.html5rocks.com/en/tutorials/es6/promises/).
+We're going to write an implementation of a JavaScript Promises library, and hopefully this helps you reading it and me writing it to better understand the workings of Promises. Let's dive right into the example and a bit of an explanation of how Promises are used. For more information, check out [Dr. Axel Rauschmayer](https://twitter.com/rauschma)'s article on [ES6 Promises](http://www.2ality.com/2014/10/es6-promises-api.html) or [Jake Archibald](https://twitter.com/jaffathecake)'s article on [Javascript Promises](https://developers.google.com/web/fundamentals/primers/promises).
 
 ## Using Promises and the demo app
 
 The basic usage of Promises is something like below, so that's where we're going to start. `doSomething()` is going to do something asynchronous and then if it succeeds, we want to be able to use or manipulate the resulting value (if any) from `doSomething()` in the success function. If something goes wrong in `doSomething()` we want to be able to handle the error in the failure function.
 
-```js
+```javascript
 doSomething().then(
   function(value) {
     // success
@@ -28,7 +29,7 @@ doSomething().then(
 
 Take a look at [script.js](https://github.com/bkbooth/promise/blob/step0/js/script.js) in the demonstration repository at branch `step0` for how we'll use the Promise library for the initial implementation.
 
-```js
+```javascript
 button.addEventListener('click', function clickListener() {
   setLoading(true);
   fetch(imgUrl, { responseType: 'blob' }
@@ -46,7 +47,7 @@ We're fetching an image, then on success we stop the loading spinner and set the
 
 Inside `doSomething()` is where we'll actually setup our Promise, start an asynchronous task and then 'resolve' (execute the success handler function) or 'reject' (execute the failure handler function) the Promise. A Promise can only be 'settled' (either 'resolved' or 'rejected') once. For the ES6 standard of Promises, we pass a function to the `new Promise()` constructor. The function has two parameters `resolve` and `reject` which are both functions that we use to resolve or reject the Promise after our asynchronous task. In the example below, `AsyncTask()` is a fictional utility that we can attach success and error handler functions to the `onSuccess` and `onError` properties.
 
-```js
+```javascript
 function doSomething() {
   return new Promise(function(resolve, reject) {
     var task = new AsyncTask();
@@ -66,7 +67,7 @@ function doSomething() {
 
 Looking at [fetch.js](https://github.com/bkbooth/promise/blob/step0/js/fetch.js) in the demonstration repository at branch `step0` you'll see how I've wrapped an [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) with an asynchronous `fetch()` function that returns a Promise. I won't explain this in any detail and it won't be changing through this article, just take note of where we create the `new Promise()` and where we `resolve` and `reject` the Promise.
 
-The demonstration is just a placeholder image and a 'Get Random Image!' button. Clicking the button downloads a random 500x500 image from [lorempixel.com](http://lorempixel.com/) and replaces the placeholder image with the downloaded image data.
+The demonstration is just a placeholder image and a 'Get Random Image!' button. Clicking the button downloads a random 500x500 image from [lorempixel.com](https://lorempixel.com/) and replaces the placeholder image with the downloaded image data.
 
 To run the demonstration you'll need to clone the git repository, `git checkout` the correct branch (in this case `step0`) and then serve the files using a HTTP server. If you have [Python 2](https://www.python.org/downloads/) or [Python 3](https://www.python.org/downloads/) installed, the easiest is to just run `python -m SimpleHTTPServer` or `python3 -m http.server` respectively from the command line inside the cloned git repository.
 
@@ -74,7 +75,7 @@ To run the demonstration you'll need to clone the git repository, `git checkout`
 
 If you try running the demonstration now, you'll get an error because [promise.js](https://github.com/bkbooth/promise/blob/step0/js/promise.js) is just an empty stub at the moment. To get the demonstration working, we'll need to flesh out the constructor function and implement the `.then()` method. The constructor just needs to initialise two internal properties to store the success and failure handler functions that are passed into `.then()`, and then it needs to call the deferred function that is passed into the constructor. We'll need to provide the `resolve` and `reject` methods that will be called from inside the deferred function that was passed into the constructor. Our initial, very basic implementation looks like this.
 
-```js
+```javascript
 // promise.js
 
 function Promise(deferred) {
@@ -111,7 +112,7 @@ This will get the current demonstration application working. In the demo reposit
 
 One of the great strengths of the Promise pattern is being able to chain operations to happen after an asynchronous operation, and eventually be able to perform a number of asynchronous operations in a style that looks synchronous, or is at least easier for us to understand and reason with. We want to be able to do something like this.
 
-```js
+```javascript
 method()
   .then(/* ... */)
   .then(/* ... */)
@@ -121,7 +122,7 @@ method()
 
 Have a quick look at [script.js](https://github.com/bkbooth/promise/blob/step2/js/script.js) on branch `step2` to see how the demo has been changed. We don't need to duplicate the `setLoading(false)` calls anymore, we can do that at the end of the chain. We've separated some of the processing and notice the new `.catch()` method. We'll start by quickly implementing `.catch()` in the Promise library, it's just a convenience function for `.then(undefined, failure())`.
 
-```js
+```javascript
 Promise.prototype.catch = function(failure) {
   return this.then(void 0, failure);
 };
@@ -129,7 +130,7 @@ Promise.prototype.catch = function(failure) {
 
 The `Promise()` constructor doesn't need to change at all, we'll even keep the `if (this._success) { ... }` and `if (this._failure) { ... }` checks around the handler calls because at the end of the chain the handler functions won't be defined. Our `.then()` method needs to change quite substantially, the first and most important change is that to facilitate chaining `.then()` and `.catch()` handlers, we must always return a `new Promise()`. Next we'll always need to define `this._success()` and `this._failure()` methods. If `.then()` provides a success handler we'll call `success()` with the passed in value, then resolve the new Promise with the result of `success(value)`, otherwise we'll just resolve the new Promise with the passed in value which just hands the passed in value along to the next handler in the chain. If `.then()` provides a failure handler the processing is quite similar, we'll call `failure()` with the passed in error and then because the error should be handled after the failure handler, we resolve the new Promise with the result of `failure(error)`. If there's not a failure handler provide, we just pass the error down the chain. The revised `.then()` method looks like this.
 
-```js
+```javascript
 Promise.prototype.then = function(success, failure) {
   return new Promise(
     function(resolve, reject) {
@@ -165,7 +166,7 @@ If you `git checkout step2` and run the demonstration now, the functionality is 
 
 One of the best things you can do with Promises is return a Promise within a handler, this lets you flatten out a chain of asynchronous operations. Take a look at [script.js](https://github.com/bkbooth/promise/blob/step3/js/script.js) on branch `step3` and you'll notice that we've moved the `.catch()` handler to the top of the chain and we're returning a new Promise via another call to `fetch()`, this time fetching a local fallback image.
 
-```js
+```javascript
 fetch(imgUrl, { responseType: 'blob' }).catch(function(error) {
   console.error('Got no image!', error);
   console.info('Getting default image');
@@ -176,7 +177,7 @@ fetch(imgUrl, { responseType: 'blob' }).catch(function(error) {
 
 We only need to make one change to our `this._success()` handler inside the `.this()` method. It now needs to check if the passed in value is an instance of `Promise`, call `.then()` on it if it is a Promise and resolve/reject the outer Promise based on the result/error of the passed in Promise. Replace the line `resolve(success(value));` with the following block to handle Promises as a value.
 
-```js
+```javascript
 if (value instanceof Promise) {
   // Resolve/reject this Promise after the passed in Promise is resolved/rejected
   value.then(
@@ -201,7 +202,7 @@ If you `git checkout step3` and run the demonstration now, there's one major cha
 
 Two very useful utility functions that a Promise library should provide are `Promise.race()` and `Promise.all()`. Both of these functions take an array of Promises and return a single Promise. `Promise.race()` resolves or rejects it's single returned Promise with the result or error from the first of it's passed in Promises to resolve or reject. The rest of the passed in Promises are ignored, regardless if they resolve or reject. `Promise.all()` resolves it's single returned Promise with an array of results resolved from all of the passed in Promises. The indexes of the results array match the index of the Promise that resolved the result from the passed in array of Promises. If any of the Promises passed into `Promise.all()` are rejected, the single returned Promise is immediately rejected with the error and all other passed in Promises are ignored, regardless if they are resolved or rejected. `Promise.all()` looks like this.
 
-```js
+```javascript
 Promise.all([
   fetch(imgUrl, { responseType: 'blob' }), // fetch 0
   fetch(imgUrl, { responseType: 'blob' }), // fetch 1
@@ -215,7 +216,7 @@ Try and think about how you might implement `Promise.race()` and `Promise.all()`
 
 `Promise.race()`
 
-```js
+```javascript
 Promise.race = function(promises) {
   var settled = false; // Keep track if any Promises have been settled
 
@@ -244,7 +245,7 @@ Promise.race = function(promises) {
 
 `Promise.all()`
 
-```js
+```javascript
 Promise.all = function(promises) {
   var settled = 0, // Keep track of the number of Promises settled
     results = []; // Keep track of Promise resolutions
@@ -270,7 +271,7 @@ Promise.all = function(promises) {
 };
 ```
 
-> <a name="update20150529"></a>**Update 29/05/2015** [Kyle Simpson](http://getify.me/) ([@getify](https://twitter.com/getify)) took some time to review this article and gave some awesome feedback. I've been slowly rewriting my Promises implementation, but I haven't had as much time to work on it as I'd like so I thought I should post an update in the meantime. Firstly, this implementation isn't currently [Promises/A+](https://promisesaplus.com/) compliant, that was never an original goal, but it is something I'm working towards now. Kyle has a lightweight Promises/A+ compliant implementation called [Native Promises Only (NPO)](https://github.com/getify/native-promise-only). Two very important things to note about my current implementation:
+> <a name="update20150529"></a>**Update 29/05/2015** [Kyle Simpson](https://me.getify.com/) ([@getify](https://twitter.com/getify)) took some time to review this article and gave some awesome feedback. I've been slowly rewriting my Promises implementation, but I haven't had as much time to work on it as I'd like so I thought I should post an update in the meantime. Firstly, this implementation isn't currently [Promises/A+](https://promisesaplus.com/) compliant, that was never an original goal, but it is something I'm working towards now. Kyle has a lightweight Promises/A+ compliant implementation called [Native Promises Only (NPO)](https://github.com/getify/native-promise-only). Two very important things to note about my current implementation:
 
 > - My handlers aren't async! This is a big no-no, but relatively easily fixed by wrapping their execution in `setTimeout(..., 0)`
 > - Promises should recursively resolve to eventually return a non-Promise value

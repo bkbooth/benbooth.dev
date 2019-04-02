@@ -1,11 +1,12 @@
 ---
 title: Building a basic UI-clone of Instagram using Elm - Part 3
 date: 2016-12-07T23:34:00+11:00
-tags: [Programming, Elm, Functional]
+description: I've had a fascination with functional programming for a few years but never really jumped in with any language. Elm seems like a good jumping on point so follow along as I learn Elm while building a basic web app. Here I build the single post view and add the comments form.
+tags: [Coding, Elm, Functional]
 unsplashHero: vaTiOuT-Y4s
 ---
 
-This article is a part of a series, if you haven't read the first or second parts yet you can read them [here](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-1/) and [here](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-2/). Alternatively you can get the code from the end of the last article [here](https://github.com/bkbooth/Elmstagram/tree/part2) and continue along. You can view the finished app [here][demo] and all of the source code is available [here][repo].
+This article is a part of a series, you should read [part 1](/building-a-basic-ui-clone-of-instagram-using-elm-part-1/) and [part 2](/building-a-basic-ui-clone-of-instagram-using-elm-part-2/) if you haven't already. Alternatively you can get the code from the end of the last article [here](https://github.com/bkbooth/Elmstagram/tree/part2) and continue along. You can view the finished app [here][demo] and all of the source code is available [here][repo].
 
 ## Implement the single post view
 
@@ -98,7 +99,7 @@ getPostComments postId =
         Http.get ("data/" ++ postId ++ ".json") decodeComments
 ```
 
-Again this is pretty similar to `Rest.getPosts` that we defined previously, except that we're taking a `postId` parameter, and we also pass the `postId` through to the `FetchComments` action. We should now add `FetchComments` to the `Types.Msg` union type and while we're in _Types.elm_ we should add the lists of `Comment`s to `Types.Model` and update `Types.initialModel` to initialise it. We'll store the lists of `Comment`s in a `Dict` which is provided by [`elm-lang/core`](http://package.elm-lang.org/packages/elm-lang/core/latest), but we need to `import` it before we can use it. The keys in our `Dict` will be `Post.id`s and the values will be `List Comment`. Note that `Dict.empty` just initialises an empty `Dict`.
+Again this is pretty similar to `Rest.getPosts` that we defined previously, except that we're taking a `postId` parameter, and we also pass the `postId` through to the `FetchComments` action. We should now add `FetchComments` to the `Types.Msg` union type and while we're in _Types.elm_ we should add the lists of `Comment`s to `Types.Model` and update `Types.initialModel` to initialise it. We'll store the lists of `Comment`s in a `Dict` which is provided by [`elm-lang/core`](https://package.elm-lang.org/packages/elm-lang/core/latest), but we need to `import` it before we can use it. The keys in our `Dict` will be `Post.id`s and the values will be `List Comment`. Note that `Dict.empty` just initialises an empty `Dict`.
 
 ```elm
 -- Types.elm
@@ -276,7 +277,7 @@ type Msg
     | RemoveComment String Int
 ```
 
-The `String` will be a `Post.id` and the `Int` will be an index representing the location of the `Comment` in the `List`. Let's add the handler for this action in `State.update` now. We're going to use a function from `List.Extra` which is provided by [`elm-community/list-extra`](http://package.elm-lang.org/packages/elm-community/list-extra/latest), so install it now with `elm package install elm-community/list-extra` and `import List.Extra`.
+The `String` will be a `Post.id` and the `Int` will be an index representing the location of the `Comment` in the `List`. Let's add the handler for this action in `State.update` now. We're going to use a function from `List.Extra` which is provided by [`elm-community/list-extra`](https://package.elm-lang.org/packages/elm-community/list-extra/latest), so install it now with `elm package install elm-community/list-extra` and `import List.Extra`.
 
 ```elm
 -- State.elm
@@ -500,11 +501,11 @@ This doesn't solve all of the problems that you'll face trying to build a front-
 
 If you missed one of the earlier parts, feel free to go back and read them too:
 
-- [Part 1](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-1/) - Setup an [Elm][] app and load posts from a [JSON][] file
-- [Part 2](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-2/) - Build the main list view and add navigation
+- [Part 1](/building-a-basic-ui-clone-of-instagram-using-elm-part-1/) - Setup an [Elm][] app and load posts from a [JSON][] file
+- [Part 2](/building-a-basic-ui-clone-of-instagram-using-elm-part-2/) - Build the main list view and add navigation
 
-[elm]: http://elm-lang.org/ 'Elm'
-[demo]: https://elmstagram.benbooth.co 'Elmstagram | Demo'
+[elm]: https://elm-lang.org/ 'Elm'
+[demo]: https://elmstagram.benbooth.dev 'Elmstagram | Demo'
 [repo]: https://github.com/bkbooth/Elmstagram 'Elmstagram | GitHub'
 [json]: https://en.wikipedia.org/wiki/JSON 'JSON'
 [dom]: https://en.wikipedia.org/wiki/Document_Object_Model 'DOM'

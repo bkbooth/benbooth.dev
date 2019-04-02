@@ -14,6 +14,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
             frontmatter {
               title
               date
+              description
             }
           }
         }

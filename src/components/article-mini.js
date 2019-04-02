@@ -23,18 +23,19 @@ const ArticleMini = ({ article, isNext = false, isPrevious = false }) => (
         rightAlign={true}
       />
     </header>
-    <p dangerouslySetInnerHTML={{ __html: article.excerpt }} />
+    <p dangerouslySetInnerHTML={{ __html: article.frontmatter.description || article.excerpt }} />
   </Container>
 );
 
 ArticleMini.propTypes = {
   article: PropTypes.shape({
-    excerpt: PropTypes.string.isRequired,
+    excerpt: PropTypes.string,
     timeToRead: PropTypes.number.isRequired,
     fields: PropTypes.shape({ slug: PropTypes.string.isRequired }).isRequired,
     frontmatter: PropTypes.shape({
       title: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
+      description: PropTypes.string,
     }).isRequired,
   }).isRequired,
   isNext: PropTypes.bool,

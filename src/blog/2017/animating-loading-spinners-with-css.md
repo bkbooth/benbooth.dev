@@ -1,7 +1,8 @@
 ---
 title: Animating Loading Spinners with CSS
 date: 2017-06-21T08:49:09+10:00
-tags: [Programming, SydCSS, CSS, Animation, Keyframes]
+description: On a recent side project I had wasted a bunch of time creating a fancy loading spinner while I was mentally blocked trying to solve a real problem. Explore the interesting parts of the CSS animation API through the medium of loading spinners.
+tags: [Coding, SydCSS, CSS, Animation, Keyframes]
 hero:
   image: ../../assets/css-animation/highres_461629142.jpg
   alt: Ben Booth presenting this talk at SydCSS
@@ -99,7 +100,7 @@ Most of this is relatively new to the CSS spec but support in modern browsers is
 
 [![MDN browser support](../../assets/css-animation/mdn-animations.png 'MDN browser support')](https://developer.mozilla.org/en/docs/Web/CSS/animation#Browser_compatibility)
 
-[![Can I use browser support](../../assets/css-animation/caniuse-animations.png 'Can I use browser support')](http://caniuse.com/#feat=css-animation)
+[![Can I use browser support](../../assets/css-animation/caniuse-animations.png 'Can I use browser support')](https://caniuse.com/#feat=css-animation)
 
 MDN is a great learning resources for understanding CSS properties and rules. There's also a really helpful guide on using CSS animations:
 
@@ -108,7 +109,7 @@ MDN is a great learning resources for understanding CSS properties and rules. Th
 - [Using CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
 
 [sydcss]: https://www.meetup.com/SydCSS/
-[slides]: http://bkbooth.github.io/sydcss-talk-animations/
+[slides]: https://github.benbooth.dev/sydcss-talk-animations/
 [css-animation]: https://developer.mozilla.org/en-US/docs/Web/CSS/animation
 [css-keyframes]: https://developer.mozilla.org/en/docs/Web/CSS/@keyframes
 [css-transform]: https://developer.mozilla.org/en-US/docs/Web/CSS/transform

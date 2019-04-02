@@ -1,7 +1,8 @@
 ---
 title: Pregnancy Risk Factors
 date: 2014-03-12T08:56:00+11:00
-tags: [General, Musings]
+description: Musings about some of the public perceptions associated with the various eating and lifestyle guidelines given to pregnant women.
+tags: [Musings]
 unsplashHero: ewH71a1zdmA
 ---
 

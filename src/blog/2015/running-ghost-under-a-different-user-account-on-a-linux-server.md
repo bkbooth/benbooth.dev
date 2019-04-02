@@ -1,31 +1,32 @@
 ---
 title: Running Ghost with PM2 under a different user account on a Linux server
 date: 2015-06-15T13:17:00+10:00
+description: Create a new user on a Linux server with it's own Node.js version and globals and have your Ghost application run with PM2 under that new account.
 tags: [Ghost, Node.js, Linux]
 unsplashHero: 4cFMBSmZcnc
 ---
 
-When I first setup my [ghost] blog on my own server (a self-managed [Linode] which has been great and I highly recommend them), I installed [Node.js] directly under my main user account. I eventually ran into the problem of needing/wanting to use different versions of [Node.js] for different applications, so I uninstalled [Node.js] and installed/used [nvm] instead. It occurred to me that I might be better off running the [ghost] application under a different user account, so that it could manage it's own [nvm]/[Node.js] versions and global [npm] packages. I did nothing about it at the time, but I recently wanted to be able to run two applications which needed different [Node.js] versions simultaneously.
+When I first setup my [Ghost] blog on my own server (a self-managed [Linode] which has been great and I highly recommend them), I installed [Node.js] directly under my main user account. I eventually ran into the problem of needing/wanting to use different versions of [Node.js] for different applications, so I uninstalled [Node.js] and installed/used [nvm] instead. It occurred to me that I might be better off running the [Ghost] application under a different user account, so that it could manage it's own [nvm]/[Node.js] versions and global [npm] packages. I did nothing about it at the time, but I recently wanted to be able to run two applications which needed different [Node.js] versions simultaneously.
 
-My [Linode] is running [CentOS] 7, but the process should be pretty similar across Linux distributions, this is an overview of how I'm setup to run [ghost]:
+My [Linode] is running [CentOS] 7, but the process should be pretty similar across Linux distributions, this is an overview of how I'm setup to run [Ghost]:
 
 - [Node.js] and [npm] are installed and managed by [nvm]
-- The [ghost] application is setup under `/var/www/benbooth.co`
-- [nginx] is being used as a reverse proxy to forward requests to the [ghost] application
-- The [ghost] application is always running and starts on server start using [PM2]
+- The [Ghost] application is setup under `/var/www/benbooth.co`
+- [nginx] is being used as a reverse proxy to forward requests to the [Ghost] application
+- The [Ghost] application is always running and starts on server start using [PM2]
 - [Keymetrics] monitoring through [PM2]
 
 ## Create the new user
 
 Let's get started, firstly you'll need to create the new user:
 
-```none
+```console
 [user]$ sudo useradd [username]
 ```
 
 I'm creating a user called `ghost` to run my blog, so I'd run `sudo useradd ghost` (tip: to fully delete the user including home directory, use `sudo userdel -r ghost`). If you want to set a password for the new user type `passwd [username]`. I don't want to be able to login directly to this user, so I'm not going to set a password, we can switch to the new user by typing:
 
-```none
+```console
 [user]$ sudo su ghost
 ```
 
@@ -35,75 +36,75 @@ Which switches to the new user, but stays in the same working directory. Pass th
 
 Next we need to install [nvm] and then install [Node.js]. Download and run the [nvm] installer script (this is the latest version at the time of writing, check the [nvm GitHub repo][nvm] for the latest version). If you haven't already, change to the new user first `sudo su - ghost`.
 
-```none
+```console
 [ghost]$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
 ```
 
 Then install a [Node.js] version and tag it as `default`. (You might need to `source ~/.bashrc` before you use [nvm] if you just installed it):
 
-```none
+```console
 [ghost]$ nvm install 0.10
 [ghost]$ nvm alias default 0.10
 ```
 
-At the time of writing, [ghost] requires [Node.js] version `0.10.*` (`0.10.38` is the latest at the time of writing).
+At the time of writing, [Ghost] requires [Node.js] version `0.10.*` (`0.10.38` is the latest at the time of writing).
 
 ## Install [PM2]
 
 Installing [PM2] is a straight-forward [npm] global install:
 
-```none
+```console
 [ghost]$ npm install -g pm2
 ```
 
-# Stop the existing [ghost] instance
+# Stop the existing [Ghost] instance
 
-Next, if you haven't already, stop the existing [ghost] instance running under your user account (`exit` the `ghost` user shell to take you back to your user shell):
+Next, if you haven't already, stop the existing [Ghost] instance running under your user account (`exit` the `ghost` user shell to take you back to your user shell):
 
-```none
+```console
 [user]$ pm2 stop ghost
 [user]$ pm2 delete ghost
 [user]$ pm2 save
 ```
 
-This is assuming you were already running the blog using [PM2] with the name `ghost`. `pm2 save` dumps the list of currently running processes to file so it can be restored later, this is one part of keeping [ghost] running even after the server restarts. To cleanup the rest, run these commands too (we'll set these up again with the new user account):
+This is assuming you were already running the blog using [PM2] with the name `ghost`. `pm2 save` dumps the list of currently running processes to file so it can be restored later, this is one part of keeping [Ghost] running even after the server restarts. To cleanup the rest, run these commands too (we'll set these up again with the new user account):
 
-```none
+```console
 [user]$ sudo chkconfig --del pm2-init.sh
 [user]$ sudo rm /etc/init.d/pm2-init.sh
 [user]$ sudo rm /var/lock/subsys/pm2-init.sh
 ```
 
-## Run the [ghost] application under the new user account
+## Run the [Ghost] application under the new user account
 
-Next you'll need to get [ghost] running under the new user account. Firstly, change the ownership of all files (my [ghost] instance is installed to `/var/www/benbooth.co`):
+Next you'll need to get [Ghost] running under the new user account. Firstly, change the ownership of all files (my [Ghost] instance is installed to `/var/www/benbooth.co`):
 
-```none
+```console
 [user]$ cd /var/www/
 [user]$ sudo chown -R ghost:ghost benbooth.co/
 ```
 
 I don't think it would be necessary, but just to be sure, I cleared out the `node_modules` and re-installed the dependencies under the new user account (remember to change to the new user account):
 
-```none
+```console
 [user]$ sudo su ghost
 [ghost]$ cd benbooth.co/
 [ghost]$ rm -rf node_modules/*
 [ghost]$ npm install --production
 ```
 
-Finally, run the [ghost] application using [PM2] and save the running [PM2] processes to file:
+Finally, run the [Ghost] application using [PM2] and save the running [PM2] processes to file:
 
-```none
+```console
 [ghost]$ NODE_ENV=production pm2 start index.js --name "ghost"
 [ghost]$ pm2 save
 ```
 
-## Persist [ghost] application across server restarts
+## Persist [Ghost] application across server restarts
 
-Keeping [PM2] and your [ghost] application running across server restarts is a little different depending on your OS/distribution, but [PM2] will try to help you as much as possible. Just run:
+Keeping [PM2] and your [Ghost] application running across server restarts is a little different depending on your OS/distribution, but [PM2] will try to help you as much as possible. Just run:
 
-```none
+```console
 [ghost]$ pm2 startup [platform]
 ```
 
@@ -111,7 +112,7 @@ For me, running [CentOS], I run `pm2 startup centos`. This will not work because
 
 At this stage I found that the startup script wasn't actually bringing up the [PM2] daemon, I had to manually edit the `/etc/init.d/pm2-init.sh` file to fix an issue (I'm assuming this is a bug, so should be temporary):
 
-```none
+```console
 [user]$ sudo vim /etc/init.d/pm2-init.sh
 ```
 
@@ -121,7 +122,7 @@ Look for the line `USER=[username]`. In my case, this was set to `USER=root` and
 
 [Keymetrics] offers good _free_ monitoring for [PM2] applications, if you haven't already, [register][pm2] for an account. You'll get a **private key** and a **secret key**. Linking it to your [PM2] instance is super-simple:
 
-```none
+```console
 [ghost]$ pm2 link [YOUR_SECRET_KEY] [YOUR_PUBLIC_KEY]
 ```
 
@@ -129,7 +130,7 @@ If you keep an eye on the [Keymetrics] dashboard, you should start seeing a hear
 
 If you already had [Keymetrics] running under your user account, and aren't running any other [PM2] applications, feel free to delete the [Keymetrics] link:
 
-```none
+```console
 [user]$ pm2 link delete [YOUR_PUBLIC_KEY]
 ```
 
@@ -139,6 +140,6 @@ If you already had [Keymetrics] running under your user account, and aren't runn
 [nvm]: https://github.com/creationix/nvm
 [npm]: https://www.npmjs.com/
 [centos]: https://www.centos.org/
-[nginx]: http://nginx.org/en/
+[nginx]: https://nginx.org/en/
 [pm2]: https://github.com/Unitech/pm2
 [keymetrics]: https://app.keymetrics.io/#/register

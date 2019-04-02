@@ -1,11 +1,12 @@
 ---
 title: Building a basic UI-clone of Instagram using Elm - Part 2
 date: 2016-12-02T23:32:00+11:00
-tags: [Programming, Elm, Functional]
+tags: [Coding, Elm, Functional]
+description: I've had a fascination with functional programming for a few years but never really jumped in with any language. Elm seems like a good jumping on point so follow along as I learn Elm while building a basic web app. Here I build the main list view and add navigation.
 unsplashHero: wsHwYxu-rkc
 ---
 
-This article is a part of a series, if you haven't read the first part yet you can read it [here](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-1/). Alternatively you can get the code from the end of the last article [here](https://github.com/bkbooth/Elmstagram/tree/part1) and continue along. You can view the finished app [here][demo] and all of the source code is available [here][repo].
+This article is a part of a series, you should read [part 1](/building-a-basic-ui-clone-of-instagram-using-elm-part-1/) if you haven't already. Alternatively you can get the code from the end of the last article [here](https://github.com/bkbooth/Elmstagram/tree/part1) and continue along. You can view the finished app [here][demo] and all of the source code is available [here][repo].
 
 ## Implement the main list of posts view
 
@@ -35,8 +36,8 @@ Download and save the final [CSS](https://en.wikipedia.org/wiki/Cascading_Style_
 
 We're no longer inlining the compiled [JavaScript][] code, so we need to manually bootstrap it after the script loads. We'll need to build _js/app.js_ and with `elm make`:
 
-```none
-$ elm make App.elm --output js/app.js
+```console
+elm make App.elm --output js/app.js
 ```
 
 You should be able to start or restart your static HTTP server and see that everything is still working.
@@ -191,9 +192,9 @@ Now you should be able to recompile and test the app in the browser. Click any o
 
 ## Add a second page and navigation
 
-Just about any reasonably complex web application will contain multiple views and manage the navigation between those views by using the URL. Storing some of the application state in the URL also makes it easier to share a link to a particular page or view. There are two libraries provided by [Elm][] for handling changes in the URL, namely [`elm-lang/navigation`](http://package.elm-lang.org/packages/elm-lang/navigation/latest/) and [`evancz/url-parser`](http://package.elm-lang.org/packages/elm-lang/navigation/latest/). Go ahead and install both of them now with `elm package install elm-lang/navigation` and `elm package install evancz/url-parser`. It's worth noting that [Elm][] has been deliberate about calling this set of behaviours "navigation" and not "routing" as you would see in most front-end libraries and frameworks.
+Just about any reasonably complex web application will contain multiple views and manage the navigation between those views by using the URL. Storing some of the application state in the URL also makes it easier to share a link to a particular page or view. There are two libraries provided by [Elm][] for handling changes in the URL, namely [`elm-lang/navigation`](https://package.elm-lang.org/packages/elm-lang/navigation/latest/) and [`evancz/url-parser`](https://package.elm-lang.org/packages/elm-lang/navigation/latest/). Go ahead and install both of them now with `elm package install elm-lang/navigation` and `elm package install evancz/url-parser`. It's worth noting that [Elm][] has been deliberate about calling this set of behaviours "navigation" and not "routing" as you would see in most front-end libraries and frameworks.
 
-The first change required to introduce navigation to an [Elm][] app is right at the top in _App.elm_, [`elm-lang/navigation`](http://package.elm-lang.org/packages/elm-lang/navigation/latest/) provides `Navigation.program` which we use to create `App.main` instead of `Html.app`. Replace `import Html` with `import Navigation`, then replace `Html.program` with `Navigation.program` and pass `State.hashParser` is the first parameter before the record definition, we'll define `State.hashParser` shortly. `App.main` should now look like this.
+The first change required to introduce navigation to an [Elm][] app is right at the top in _App.elm_, [`elm-lang/navigation`](https://package.elm-lang.org/packages/elm-lang/navigation/latest/) provides `Navigation.program` which we use to create `App.main` instead of `Html.app`. Replace `import Html` with `import Navigation`, then replace `Html.program` with `Navigation.program` and pass `State.hashParser` is the first parameter before the record definition, we'll define `State.hashParser` shortly. `App.main` should now look like this.
 
 ```elm
 -- App.elm
@@ -340,12 +341,12 @@ Finally we need to update the links in _View.elm_ to use `State.toUrl`. Import `
 
 You can view the code that we've built so far [here](https://github.com/bkbooth/Elmstagram/tree/part2). We'll continue building the app in Part 3:
 
-- [Part 1](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-1/) - Setup an [Elm][] app and load posts from a [JSON][] file
-- [Part 3](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-3/) - Build the single post view and add a comments form
+- [Part 1](/building-a-basic-ui-clone-of-instagram-using-elm-part-1/) - Setup an [Elm][] app and load posts from a [JSON][] file
+- [Part 3](/building-a-basic-ui-clone-of-instagram-using-elm-part-3/) - Build the single post view and add the comments form
 
-[elm]: http://elm-lang.org/ 'Elm'
+[elm]: https://elm-lang.org/ 'Elm'
 [instagram]: https://www.instagram.com/ 'Instagram'
-[demo]: https://elmstagram.benbooth.co 'Elmstagram | Demo'
+[demo]: https://elmstagram.benbooth.dev 'Elmstagram | Demo'
 [repo]: https://github.com/bkbooth/Elmstagram 'Elmstagram | GitHub'
 [javascript]: https://en.wikipedia.org/wiki/JavaScript 'JavaScript'
 [json]: https://en.wikipedia.org/wiki/JSON 'JSON'

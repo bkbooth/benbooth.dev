@@ -1,7 +1,8 @@
 ---
 title: Beware the DOM Reflow
 date: 2014-03-14T17:17:00+11:00
-tags: [Programming, CSS]
+description: Don't ever use a CSS transition with any CSS property that causes a DOM reflow, you will never get smooth transitions. Try to use CSS transform properties for transitions.
+tags: [Coding, CSS]
 unsplashHero: O8dDy7BRgBA
 ---
 
@@ -51,9 +52,9 @@ Notes:
 This produced silky smooth animations in both of my testing environments (browser and phone). Using a combination of the various CSS transforms ([read up on them][6] for more information) and standard CSS properties that do not cause a DOM reflow (such as `opacity`) I've been able to produce a several subtle animations in my app that are also perfectly smooth.
 
 [1]: https://cordova.apache.org 'Apache Cordova'
-[2]: http://phonegap.com 'Adobe PhoneGap'
-[3]: http://angularjs.org 'AngularJS'
-[4]: http://stackoverflow.com/questions/510213/when-does-reflow-happen-in-a-dom-environment 'DOM Reflow'
+[2]: https://phonegap.com 'Adobe PhoneGap'
+[3]: https://angularjs.org 'AngularJS'
+[4]: https://stackoverflow.com/questions/510213/when-does-reflow-happen-in-a-dom-environment 'DOM Reflow'
 [5]: https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transitions 'CSS Transition'
 [6]: https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_transforms 'CSS Transform'
-[7]: http://stackoverflow.com/questions/10814178/css-performance-relative-to-translatez0 'translate3D hack'
+[7]: https://stackoverflow.com/questions/10814178/css-performance-relative-to-translatez0 'translate3D hack'

@@ -1,11 +1,12 @@
 ---
 title: Building a basic UI-clone of Instagram using Elm - Part 1
 date: 2016-12-01T13:14:00+11:00
-tags: [Programming, Elm, Functional]
+description: I've had a fascination with functional programming for a few years but never really jumped in with any language. Elm seems like a good jumping on point so follow along as I learn Elm while building a basic web app. Here I setup an Elm app and load posts from a JSON file.
+tags: [Coding, Elm, Functional]
 unsplashHero: EPy0gBJzzZU
 ---
 
-I've had a fascination with [functional programming](https://en.wikipedia.org/wiki/Functional_programming) for a few years now, but despite taking a quick look at [Haskell](https://www.haskell.org/) I've not invested much time actually learning a functional language. I've generally tried to approach my front-end development from a functional mindset, keeping functions [pure](https://en.wikipedia.org/wiki/Pure_function), trying not to mutate objects, always using things like [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`reduce`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) to manipulate collections. One of my main complaints/observations with functional languages is that they don't seem to be immediately practical, there seems to be a big step between picking up the fundamentals and basics of the language, and actually building something useful with it. Sometime recently I became aware of [Elm][] and after looking into it quickly, it seemed to address exactly this complaint of mine. There seemed to be a quick turnaround from picking up the basics of the language and being able to actually build something with it, specifically a front-end web application. I read through the [_An Introduction to Elm_][elm intro] book and wanted to build one of my side project ideas with [Elm][], but I decided that to avoid the possibility of getting overwhelmed and frustrated trying to build something ambitious with a new language, I'd build an example app that covered a lot of what I'd need for a bigger app. So, inspired by [Wes Bos'](https://twitter.com/wesbos) great [Learn Redux course](https://learnredux.com/), I decided I'd build a simple UI-clone of [Instagram][]. You can view the finished app [here][demo] and all of the source code is available [here][repo]. Also a big shout out to my friend Sam Gates for letting me use data from his [@wollongong_rips](https://www.instagram.com/wollongong_rips/) account for this example app and articles.
+I've had a fascination with [functional programming](https://en.wikipedia.org/wiki/Functional_programming) for a few years now, but despite taking a quick look at [Haskell](https://www.haskell.org/) I've not invested much time actually learning a functional language. I've generally tried to approach my front-end development from a functional mindset, keeping functions [pure](https://en.wikipedia.org/wiki/Pure_function), trying not to mutate objects, always using things like [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`reduce`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce) to manipulate collections. One of my main complaints/observations with functional languages is that they don't seem to be immediately practical, there seems to be a big step between picking up the fundamentals and basics of the language, and actually building something useful with it. Sometime recently I became aware of [Elm][] and after looking into it quickly, it seemed to address exactly this complaint of mine. There seemed to be a quick turnaround from picking up the basics of the language and being able to actually build something with it, specifically a front-end web application. I read through the [_An Introduction to Elm_][elm intro] book and wanted to build one of my side project ideas with [Elm][], but I decided that to avoid the possibility of getting overwhelmed and frustrated trying to build something ambitious with a new language, I'd build an example app that covered a lot of what I'd need for a bigger app. So, inspired by [Wes Bos'](https://twitter.com/wesbos) great [Learn Redux course](https://learnredux.com/), I decided I'd build a simple UI-clone of [Instagram][]. You can view the finished app [here][demo] and all of the source code is available [here][repo]. Also a big shout out to my friend Sam Gates for letting me use data from his [@samgatesphotography](https://www.instagram.com/samgatesphotography/) account for this example app and articles.
 
 ## Setting up a basic [Elm][] app
 
@@ -28,16 +29,16 @@ project-directory/
 
 This should scale reasonably well, you would mostly re-use the same files as necessary in feature sub-directories. We'll only use the top-level files for this example, but for anything more complex you would probably need to break the app into smaller features, similar to how you would compose the UI out of separate small components in other frameworks.
 
-The first steps to get started with [Elm][] are to install `elm`, create a new project directory and initialise an [Elm][] project inside of it. Installing [`elm-lang/core`](http://package.elm-lang.org/packages/elm-lang/core/latest/) will include [`elm-lang/html`](http://package.elm-lang.org/packages/elm-lang/html/latest/) and initialise an _elm-package.json_ file for the project.
+The first steps to get started with [Elm][] are to install `elm`, create a new project directory and initialise an [Elm][] project inside of it. Installing [`elm-lang/core`](https://package.elm-lang.org/packages/elm-lang/core/latest/) will include [`elm-lang/html`](https://package.elm-lang.org/packages/elm-lang/html/latest/) and initialise an _elm-package.json_ file for the project.
 
-```none
-$ npm install -g elm
-$ mkdir Elmstagram
-$ cd Elmstagram
-$ elm package install elm-lang/core
+```console
+npm install -g elm
+mkdir Elmstagram
+cd Elmstagram
+elm package install elm-lang/core
 ```
 
-[The Elm Architecture][] is one of [Elm][]'s great contributions to the front-end ecosystem, the concept of a single immutable state object has been used by [Redux](http://redux.js.org/) and many other similar libraries. The following files implement a very basic [Elm][] example, and we'll use this as a starting point for the app. Note that we won't need _Rest.elm_ just yet.
+[The Elm Architecture][] is one of [Elm][]'s great contributions to the front-end ecosystem, the concept of a single immutable state object has been used by [Redux](https://redux.js.org/) and many other similar libraries. The following files implement a very basic [Elm][] example, and we'll use this as a starting point for the app. Note that we won't need _Rest.elm_ just yet.
 
 ```elm
 -- Types.elm
@@ -113,7 +114,7 @@ main =
         }
 ```
 
-I don't want to go into explaining this too much because this is all pretty thoroughly covered in the [Elm][] introductory [tutorials][elm intro] and [examples](http://elm-lang.org/examples). Basically the _App.elm_ file is the entry point into the application, it must expose a `main` function which returns a `Program` as defined by [The Elm Architecture][]. The `Program` requires:
+I don't want to go into explaining this too much because this is all pretty thoroughly covered in the [Elm][] introductory [tutorials][elm intro] and [examples](https://elm-lang.org/examples). Basically the _App.elm_ file is the entry point into the application, it must expose a `main` function which returns a `Program` as defined by [The Elm Architecture][]. The `Program` requires:
 
 - an `init` function which provides an initial `model` and optionally some initial commands to run. We'll use this next to load the list of posts.
 - an `update` function which responds to commands and updates the `model`.
@@ -138,7 +139,7 @@ Download and save [_posts.json_](https://raw.githubusercontent.com/bkbooth/Elmst
     "likes": 91,
     "comments": 4,
     "text": "The description or caption of the post #plusprobablysomehashtags",
-    "media": "http://url.to/post.image.jpg"
+    "media": "https://url.to/post.image.jpg"
   },
   ...
 ]
@@ -172,7 +173,7 @@ initialModel =
     Model []
 ```
 
-Next we need to define a decoder that instructs [Elm][] how to parse [JSON][] into types that it knows about. We need to use methods defined in [`Json.Decode`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode) from [`elm-lang/core`](http://package.elm-lang.org/packages/elm-lang/core/latest) to create the decoder. The [JSON][] structure is an array of objects, each representing a single post. So we'll define the `decodePosts` function as returning a `Json.Decode.Decoder (List Post)`. We'll need to create the _Rest.elm_ file now and it will look like this:
+Next we need to define a decoder that instructs [Elm][] how to parse [JSON][] into types that it knows about. We need to use methods defined in [`Json.Decode`](https://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode) from [`elm-lang/core`](https://package.elm-lang.org/packages/elm-lang/core/latest) to create the decoder. The [JSON][] structure is an array of objects, each representing a single post. So we'll define the `decodePosts` function as returning a `Json.Decode.Decoder (List Post)`. We'll need to create the _Rest.elm_ file now and it will look like this:
 
 ```elm
 -- Rest.elm
@@ -196,7 +197,7 @@ Note that we've imported `Json.Decode as Json exposing(..)`. This means that in 
 
 Reading the decoder as we've defined it, we want to decode the [JSON][] into a list of `Post`s. We use the `map5` function here because we want to take 5 properties from the [JSON][] object. There are a number of `Json.Decode.mapx` functions to decode different sized [JSON][] objects. `map5` takes a function that takes 5 parameters to produce a value (in this case the default `Post` constructor function), followed by 5 decoders. The 5 `field` decoders that we're using each take a property name to extract from the [JSON][] object, followed by a type decoder which needs to match the [JSON][] property type.
 
-To load the [JSON][] file we'll need to install [`elm-lang/http`](http://package.elm-lang.org/packages/elm-lang/http/latest) (`elm package install elm-lang/http`) and `import Http` in _Rest.elm_. The `getPosts` function will look like this:
+To load the [JSON][] file we'll need to install [`elm-lang/http`](https://package.elm-lang.org/packages/elm-lang/http/latest) (`elm package install elm-lang/http`) and `import Http` in _Rest.elm_. The `getPosts` function will look like this:
 
 ```elm
 -- Rest.elm
@@ -263,24 +264,24 @@ rootView model =
 
 Go ahead and recompile the app with `elm make App.elm`. Because we've introduced a HTTP request you won't be able to just open the created _index.html_ file in a browser anymore, the browser will show a [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) error when attempting to load _posts.json_. You'll need to use a HTTP server to serve the example, but a static server such as [http-server](https://www.npmjs.com/package/http-server) will be good enough for now, just install and run it in your project directory, then open http://localhost:8080 in your browser.
 
-```none
-$ elm make App.elm
-$ npm install -g http-server
-$ http-server
+```console
+elm make App.elm
+npm install -g http-server
+http-server
 ```
 
 ## That's all (for now)
 
 You can view the code that we've built so far [here](https://github.com/bkbooth/Elmstagram/tree/part1). We'll continue building the app in the following articles:
 
-- [Part 2](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-2/) - Build the main list view and add navigation
-- [Part 3](https://benbooth.co/building-a-basic-ui-clone-of-instagram-using-elm-part-3/) - Build the single post view and add a comments form
+- [Part 2](/building-a-basic-ui-clone-of-instagram-using-elm-part-2/) - Build the main list view and add navigation
+- [Part 3](/building-a-basic-ui-clone-of-instagram-using-elm-part-3/) - Build the single post view and add the comments form
 
-[elm]: http://elm-lang.org/ 'Elm'
+[elm]: https://elm-lang.org/ 'Elm'
 [elm intro]: https://guide.elm-lang.org/ 'An Introduction to Elm'
 [the elm architecture]: https://guide.elm-lang.org/architecture/ 'The Elm Architecture'
 [instagram]: https://www.instagram.com/ 'Instagram'
-[demo]: https://elmstagram.benbooth.co 'Elmstagram | Demo'
+[demo]: https://elmstagram.benbooth.dev 'Elmstagram | Demo'
 [repo]: https://github.com/bkbooth/Elmstagram 'Elmstagram | GitHub'
 [javascript]: https://en.wikipedia.org/wiki/JavaScript 'JavaScript'
 [json]: https://en.wikipedia.org/wiki/JSON 'JSON'
