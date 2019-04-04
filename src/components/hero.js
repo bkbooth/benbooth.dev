@@ -17,13 +17,13 @@ const Hero = ({ alt, image, unsplash, children }) => (
     {children && <ChildContainer>{children}</ChildContainer>}
     {unsplash && (
       <Credit>
-        <FontAwesomeIcon icon={faCamera} /> by{' '}
+        <FontAwesomeIcon icon={faCamera} fixedWidth /> by{' '}
         <a href={unsplash.user.links.html}>{unsplash.user.name}</a> on{' '}
         <a href={unsplash.links.html}>Unsplash</a>
         {unsplash.location && (
           <>
             {' '}
-            · <FontAwesomeIcon icon={faMapMarkerAlt} /> {unsplash.location.title}
+            · <FontAwesomeIcon icon={faMapMarkerAlt} fixedWidth /> {unsplash.location.title}
           </>
         )}
       </Credit>

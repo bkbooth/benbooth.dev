@@ -13,8 +13,7 @@ function Meta({ description, lang, meta, path, pageType, title }) {
           title
           description
           siteUrl
-          author {
-            name
+          social {
             twitter
           }
         }
@@ -75,7 +74,7 @@ function Meta({ description, lang, meta, path, pageType, title }) {
         },
         {
           name: 'twitter:creator',
-          content: `@${site.author.twitter}`,
+          content: `@${site.social.twitter}`,
         },
       ].concat(meta)}
       link={[

@@ -19,13 +19,10 @@ const ArticleInfo = ({ date, timeToRead, withAuthor }) =>
       render={({ site: { siteMetadata: site }, profilePic }) => (
         <Container>
           <Photo>
-            <StyledImage
-              fixed={profilePic.childImageSharp.fixed}
-              alt={`Photo of ${site.author.name}`}
-            />
+            <StyledImage fixed={profilePic.childImageSharp.fixed} alt={`Photo of ${site.author}`} />
           </Photo>
           <div>
-            <Author>{site.author.name}</Author>
+            <Author>{site.author}</Author>
             <CommonDateline date={date} timeToRead={timeToRead} />
           </div>
         </Container>
@@ -51,9 +48,7 @@ const authorQuery = graphql`
   query {
     site {
       siteMetadata {
-        author {
-          name
-        }
+        author
       }
     }
     profilePic: file(absolutePath: { regex: "/profile-pic.jpg/" }) {

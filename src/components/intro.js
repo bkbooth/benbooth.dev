@@ -15,8 +15,8 @@ const Intro = () => {
           title
           description
           shortDescription
-          author {
-            name
+          author
+          social {
             twitter
             github
           }
@@ -31,19 +31,18 @@ const Intro = () => {
       }
     }
   `);
-  const { author } = site;
   return (
     <Container>
       <Photo>
-        <StyledImage fluid={profilePic.childImageSharp.fluid} alt={`Photo of ${author.name}`} />
+        <StyledImage fluid={profilePic.childImageSharp.fluid} alt={`Photo of ${site.author}`} />
       </Photo>
       <Details>
         <Title>
           {site.title}
-          <a href={`https://twitter.com/${author.twitter}`}>
+          <a href={`https://twitter.com/${site.social.twitter}`}>
             <FontAwesomeIcon icon={faTwitter} size="xs" />
           </a>{' '}
-          <a href={`https://github.com/${author.github}`}>
+          <a href={`https://github.com/${site.social.github}`}>
             <FontAwesomeIcon icon={faGithub} size="xs" />
           </a>
         </Title>

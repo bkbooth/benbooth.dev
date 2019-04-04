@@ -1,8 +1,9 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faRss } from '@fortawesome/free-solid-svg-icons';
 import { GlobalStyle } from './styled/global';
 import { Footer, Header, Logo, LogoLink } from './styled/layout';
 import { theme } from '../utils/theme';
@@ -10,15 +11,13 @@ import { theme } from '../utils/theme';
 const Layout = ({ children }) => {
   const {
     bbLogo,
-    site: {
-      siteMetadata: { author },
-    },
+    site: { siteMetadata: site },
   } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
-          author {
-            name
+          author
+          social {
             twitter
             github
           }
@@ -44,13 +43,16 @@ const Layout = ({ children }) => {
         </Header>
         {children}
         <Footer>
-          © {new Date().getFullYear()} {author.name}
-          <a href={`https://twitter.com/${author.twitter}`}>
-            <FontAwesomeIcon icon={faTwitter} />
+          © {new Date().getFullYear()} {site.author}
+          <a href={`https://twitter.com/${site.social.twitter}`}>
+            <FontAwesomeIcon icon={faTwitter} fixedWidth />
           </a>{' '}
-          <a href={`https://github.com/${author.github}`}>
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
+          <a href={`https://github.com/${site.social.github}`}>
+            <FontAwesomeIcon icon={faGithub} fixedWidth />
+          </a>{' '}
+          <Link to="/rss.xml">
+            <FontAwesomeIcon icon={faRss} fixedWidth />
+          </Link>{' '}
         </Footer>
       </>
     </ThemeProvider>
