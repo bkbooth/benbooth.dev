@@ -44,13 +44,19 @@ const Layout = ({ children }) => {
         {children}
         <Footer>
           © {new Date().getFullYear()} {site.author}
-          <a href={`https://twitter.com/${site.social.twitter}`}>
+          <a
+            href={`https://twitter.com/${site.social.twitter}`}
+            title={`@${site.social.twitter} on Twitter`}
+          >
             <FontAwesomeIcon icon={faTwitter} fixedWidth />
           </a>{' '}
-          <a href={`https://github.com/${site.social.github}`}>
+          <a
+            href={`https://github.com/${site.social.github}`}
+            title={`${site.social.github} on GitHub`}
+          >
             <FontAwesomeIcon icon={faGithub} fixedWidth />
           </a>{' '}
-          <Link to="/rss.xml">
+          <Link to="/rss.xml" title="RSS Feed">
             <FontAwesomeIcon icon={faRss} fixedWidth />
           </Link>{' '}
         </Footer>

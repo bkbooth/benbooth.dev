@@ -39,10 +39,16 @@ const Intro = () => {
       <Details>
         <Title>
           {site.title}
-          <a href={`https://twitter.com/${site.social.twitter}`}>
+          <a
+            href={`https://twitter.com/${site.social.twitter}`}
+            title={`@${site.social.twitter} on Twitter`}
+          >
             <FontAwesomeIcon icon={faTwitter} size="xs" />
           </a>{' '}
-          <a href={`https://github.com/${site.social.github}`}>
+          <a
+            href={`https://github.com/${site.social.github}`}
+            title={`${site.social.github} on GitHub`}
+          >
             <FontAwesomeIcon icon={faGithub} size="xs" />
           </a>
         </Title>
