@@ -31,7 +31,7 @@ This should scale reasonably well, you would mostly re-use the same files as nec
 
 The first steps to get started with [Elm][] are to install `elm`, create a new project directory and initialise an [Elm][] project inside of it. Installing [`elm-lang/core`](https://package.elm-lang.org/packages/elm-lang/core/latest/) will include [`elm-lang/html`](https://package.elm-lang.org/packages/elm-lang/html/latest/) and initialise an _elm-package.json_ file for the project.
 
-```shell
+```bash
 $ npm install -g elm
 $ mkdir Elmstagram
 $ cd Elmstagram
@@ -264,7 +264,7 @@ rootView model =
 
 Go ahead and recompile the app with `elm make App.elm`. Because we've introduced a HTTP request you won't be able to just open the created _index.html_ file in a browser anymore, the browser will show a [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) error when attempting to load _posts.json_. You'll need to use a HTTP server to serve the example, but a static server such as [http-server](https://www.npmjs.com/package/http-server) will be good enough for now, just install and run it in your project directory, then open http://localhost:8080 in your browser.
 
-```shell
+```bash
 $ elm make App.elm
 $ npm install -g http-server
 $ http-server

@@ -36,7 +36,7 @@ Download and save the final [CSS](https://en.wikipedia.org/wiki/Cascading_Style_
 
 We're no longer inlining the compiled [JavaScript][] code, so we need to manually bootstrap it after the script loads. We'll need to build _js/app.js_ and with `elm make`:
 
-```shell
+```bash
 $ elm make App.elm --output js/app.js
 ```
 

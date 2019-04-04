@@ -16,7 +16,7 @@ Export your existing public and private keys from [Keybase][], save them locally
 
 Import both keys into your local [GPGTools][]:
 
-```shell
+```bash
 $ gpg --allow-secret-key-import --import keybase-private.key
 $ gpg --import keybase-public.key
 ```
@@ -25,13 +25,13 @@ Delete both the public and private key files.
 
 Optionally, edit `~/.gnupg/gpg.conf` to set the default key. Firstly get the ID of the key:
 
-```shell
+```bash
 $ gpg --list-secret-keys
 ```
 
 Then add it to `~/.gnupg/gpg.conf` with this line:
 
-```shell
+```bash
 $ default-key [YOUR_KEY_ID]
 ```
 
@@ -39,7 +39,7 @@ $ default-key [YOUR_KEY_ID]
 
 Make any required changes to the key with the `gpg` command-line tool:
 
-```shell
+```bash
 $ gpg --edit-key [YOUR_KEY_ID]
 ```
 
@@ -61,7 +61,7 @@ Don't forget to `save` after making your changes!
 
 Now that you've updated your local copy of the key, push it back to [Keybase][] with:
 
-```shell
+```bash
 $ keybase pgp update
 ```
 
@@ -69,7 +69,7 @@ $ keybase pgp update
 
 Export your local key to the clipboard with:
 
-```shell
+```bash
 $ keybase pgp export | pbcopy
 ```
 
@@ -85,7 +85,7 @@ Add `-S [YOUR_KEY_ID]` or `--gpg-sign=[YOUR_KEY_ID]` to your `git commit` comman
 
 Run these lines to update your global config to sign git commits by default:
 
-```shell
+```bash
 $ git config --global user.signingkey [YOUR_KEY_ID]
 $ git config --global core.gpgsign true
 ```
