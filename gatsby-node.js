@@ -42,24 +42,21 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         limit: POSTS_PER_PAGE,
         page: index + 1,
         numberOfPages,
-        previousPath: paginationPath(index - 1, numberOfPages),
-        nextPath: paginationPath(index + 1, numberOfPages),
+        previousPath: paginationPath(index + 1, numberOfPages),
+        nextPath: paginationPath(index - 1, numberOfPages),
       },
     });
   });
 
   // Create blog post pages
   posts.forEach((post, index) => {
-    const previousPost = index === numberOfPosts - 1 ? null : posts[index + 1].node;
-    const nextPost = index === 0 ? null : posts[index - 1].node;
-
     createPage({
       path: post.node.fields.slug,
       component: path.resolve('./src/templates/blog-post.js'),
       context: {
         slug: post.node.fields.slug,
-        previousPost,
-        nextPost,
+        previousPost: index === numberOfPosts - 1 ? null : posts[index + 1].node,
+        nextPost: index === 0 ? null : posts[index - 1].node,
       },
     });
   });

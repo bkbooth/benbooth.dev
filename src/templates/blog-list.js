@@ -25,11 +25,23 @@ const IndexPage = ({ data, pageContext }) => {
         ))}
       </main>
       <NextPrevPageLinks>
-        <li>{previousPath && <Link to={previousPath}>← Newer posts</Link>}</li>
+        <li>
+          {previousPath && (
+            <Link to={previousPath} rel="prev">
+              ← Older
+            </Link>
+          )}
+        </li>
         <li>
           Page {page} of {numberOfPages}
         </li>
-        <li>{nextPath && <Link to={nextPath}>Older posts →</Link>}</li>
+        <li>
+          {nextPath && (
+            <Link to={nextPath} rel="next">
+              Newer →
+            </Link>
+          )}
+        </li>
       </NextPrevPageLinks>
     </Layout>
   );
