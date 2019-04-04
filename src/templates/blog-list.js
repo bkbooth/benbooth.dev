@@ -1,14 +1,16 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Meta from '../components/meta';
 import Layout from '../components/layout';
 import Hero from '../components/hero';
 import Intro from '../components/intro';
 import ArticleMini from '../components/article-mini';
 import { Article } from '../components/styled/article';
+import { NextPrevPageLinks } from '../components/styled/next-prev-page-links';
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data, pageContext }) => {
   const posts = data.allMarkdownRemark.edges;
+  const { previousPath, nextPath, page, numberOfPages } = pageContext;
   return (
     <Layout>
       <Meta />
@@ -22,6 +24,13 @@ const IndexPage = ({ data }) => {
           </Article>
         ))}
       </main>
+      <NextPrevPageLinks>
+        <li>{previousPath && <Link to={previousPath}>← Newer posts</Link>}</li>
+        <li>
+          Page {page} of {numberOfPages}
+        </li>
+        <li>{nextPath && <Link to={nextPath}>Older posts →</Link>}</li>
+      </NextPrevPageLinks>
     </Layout>
   );
 };
@@ -29,8 +38,12 @@ const IndexPage = ({ data }) => {
 export default IndexPage;
 
 export const query = graphql`
-  query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+  query($skip: Int!, $limit: Int!) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      skip: $skip
+      limit: $limit
+    ) {
       edges {
         node {
           id

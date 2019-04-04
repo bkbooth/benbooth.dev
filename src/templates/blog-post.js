@@ -6,13 +6,13 @@ import Hero from '../components/hero';
 import ArticleMini from '../components/article-mini';
 import ArticleInfo from '../components/article-info';
 import { Article } from '../components/styled/article';
-import { NextPrevLinks } from '../components/styled/next-prev-links';
+import { NextPrevPostLinks } from '../components/styled/next-prev-post-links';
 import { HeaderSpacer } from '../components/styled/layout';
 
 const BlogPostTemplate = ({ data, pageContext }) => {
   const post = data.markdownRemark;
   const { hero } = post.frontmatter;
-  const { next, previous } = pageContext;
+  const { nextPost, previousPost } = pageContext;
   return (
     <Layout>
       <Meta
@@ -42,10 +42,10 @@ const BlogPostTemplate = ({ data, pageContext }) => {
           <p>{post.frontmatter.tags.join(', ')}</p>
         </footer>
       </Article>
-      <NextPrevLinks>
-        <li>{previous && <ArticleMini article={previous} isPrevious={true} />}</li>
-        <li>{next && <ArticleMini article={next} isNext={true} />}</li>
-      </NextPrevLinks>
+      <NextPrevPostLinks>
+        <li>{previousPost && <ArticleMini article={previousPost} isPrevious={true} />}</li>
+        <li>{nextPost && <ArticleMini article={nextPost} isNext={true} />}</li>
+      </NextPrevPostLinks>
     </Layout>
   );
 };

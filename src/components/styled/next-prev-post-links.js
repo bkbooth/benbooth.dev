@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Container as ArticleInfoContainer } from './article-info';
 import { rhythm, scale } from '../../utils/typography';
 
-export const NextPrevLinks = styled.ul`
+export const NextPrevPostLinks = styled.ul`
   ${scale(-0.25)};
   display: grid;
   grid-gap: ${rhythm(2)};
