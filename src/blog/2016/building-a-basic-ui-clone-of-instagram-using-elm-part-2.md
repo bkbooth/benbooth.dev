@@ -36,8 +36,8 @@ Download and save the final [CSS](https://en.wikipedia.org/wiki/Cascading_Style_
 
 We're no longer inlining the compiled [JavaScript][] code, so we need to manually bootstrap it after the script loads. We'll need to build _js/app.js_ and with `elm make`:
 
-```console
-elm make App.elm --output js/app.js
+```shell
+$ elm make App.elm --output js/app.js
 ```
 
 You should be able to start or restart your static HTTP server and see that everything is still working.

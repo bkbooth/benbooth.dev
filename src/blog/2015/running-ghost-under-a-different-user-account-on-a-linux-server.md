@@ -20,13 +20,13 @@ My [Linode] is running [CentOS] 7, but the process should be pretty similar acro
 
 Let's get started, firstly you'll need to create the new user:
 
-```console
+```shell
 [user]$ sudo useradd [username]
 ```
 
 I'm creating a user called `ghost` to run my blog, so I'd run `sudo useradd ghost` (tip: to fully delete the user including home directory, use `sudo userdel -r ghost`). If you want to set a password for the new user type `passwd [username]`. I don't want to be able to login directly to this user, so I'm not going to set a password, we can switch to the new user by typing:
 
-```console
+```shell
 [user]$ sudo su ghost
 ```
 
@@ -36,13 +36,13 @@ Which switches to the new user, but stays in the same working directory. Pass th
 
 Next we need to install [nvm] and then install [Node.js]. Download and run the [nvm] installer script (this is the latest version at the time of writing, check the [nvm GitHub repo][nvm] for the latest version). If you haven't already, change to the new user first `sudo su - ghost`.
 
-```console
+```shell
 [ghost]$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
 ```
 
 Then install a [Node.js] version and tag it as `default`. (You might need to `source ~/.bashrc` before you use [nvm] if you just installed it):
 
-```console
+```shell
 [ghost]$ nvm install 0.10
 [ghost]$ nvm alias default 0.10
 ```
@@ -53,7 +53,7 @@ At the time of writing, [Ghost] requires [Node.js] version `0.10.*` (`0.10.38` i
 
 Installing [PM2] is a straight-forward [npm] global install:
 
-```console
+```shell
 [ghost]$ npm install -g pm2
 ```
 
@@ -61,7 +61,7 @@ Installing [PM2] is a straight-forward [npm] global install:
 
 Next, if you haven't already, stop the existing [Ghost] instance running under your user account (`exit` the `ghost` user shell to take you back to your user shell):
 
-```console
+```shell
 [user]$ pm2 stop ghost
 [user]$ pm2 delete ghost
 [user]$ pm2 save
@@ -69,7 +69,7 @@ Next, if you haven't already, stop the existing [Ghost] instance running under y
 
 This is assuming you were already running the blog using [PM2] with the name `ghost`. `pm2 save` dumps the list of currently running processes to file so it can be restored later, this is one part of keeping [Ghost] running even after the server restarts. To cleanup the rest, run these commands too (we'll set these up again with the new user account):
 
-```console
+```shell
 [user]$ sudo chkconfig --del pm2-init.sh
 [user]$ sudo rm /etc/init.d/pm2-init.sh
 [user]$ sudo rm /var/lock/subsys/pm2-init.sh
@@ -79,14 +79,14 @@ This is assuming you were already running the blog using [PM2] with the name `gh
 
 Next you'll need to get [Ghost] running under the new user account. Firstly, change the ownership of all files (my [Ghost] instance is installed to `/var/www/benbooth.co`):
 
-```console
+```shell
 [user]$ cd /var/www/
 [user]$ sudo chown -R ghost:ghost benbooth.co/
 ```
 
 I don't think it would be necessary, but just to be sure, I cleared out the `node_modules` and re-installed the dependencies under the new user account (remember to change to the new user account):
 
-```console
+```shell
 [user]$ sudo su ghost
 [ghost]$ cd benbooth.co/
 [ghost]$ rm -rf node_modules/*
@@ -95,7 +95,7 @@ I don't think it would be necessary, but just to be sure, I cleared out the `nod
 
 Finally, run the [Ghost] application using [PM2] and save the running [PM2] processes to file:
 
-```console
+```shell
 [ghost]$ NODE_ENV=production pm2 start index.js --name "ghost"
 [ghost]$ pm2 save
 ```
@@ -104,7 +104,7 @@ Finally, run the [Ghost] application using [PM2] and save the running [PM2] proc
 
 Keeping [PM2] and your [Ghost] application running across server restarts is a little different depending on your OS/distribution, but [PM2] will try to help you as much as possible. Just run:
 
-```console
+```shell
 [ghost]$ pm2 startup [platform]
 ```
 
@@ -112,7 +112,7 @@ For me, running [CentOS], I run `pm2 startup centos`. This will not work because
 
 At this stage I found that the startup script wasn't actually bringing up the [PM2] daemon, I had to manually edit the `/etc/init.d/pm2-init.sh` file to fix an issue (I'm assuming this is a bug, so should be temporary):
 
-```console
+```shell
 [user]$ sudo vim /etc/init.d/pm2-init.sh
 ```
 
@@ -122,7 +122,7 @@ Look for the line `USER=[username]`. In my case, this was set to `USER=root` and
 
 [Keymetrics] offers good _free_ monitoring for [PM2] applications, if you haven't already, [register][pm2] for an account. You'll get a **private key** and a **secret key**. Linking it to your [PM2] instance is super-simple:
 
-```console
+```shell
 [ghost]$ pm2 link [YOUR_SECRET_KEY] [YOUR_PUBLIC_KEY]
 ```
 
@@ -130,7 +130,7 @@ If you keep an eye on the [Keymetrics] dashboard, you should start seeing a hear
 
 If you already had [Keymetrics] running under your user account, and aren't running any other [PM2] applications, feel free to delete the [Keymetrics] link:
 
-```console
+```shell
 [user]$ pm2 link delete [YOUR_PUBLIC_KEY]
 ```
 

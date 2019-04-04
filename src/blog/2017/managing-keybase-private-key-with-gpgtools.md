@@ -16,31 +16,31 @@ Export your existing public and private keys from [Keybase][], save them locally
 
 Import both keys into your local [GPGTools][]:
 
-```console
-gpg --allow-secret-key-import --import keybase-private.key
-gpg --import keybase-public.key
+```shell
+$ gpg --allow-secret-key-import --import keybase-private.key
+$ gpg --import keybase-public.key
 ```
 
 Delete both the public and private key files.
 
 Optionally, edit `~/.gnupg/gpg.conf` to set the default key. Firstly get the ID of the key:
 
-```console
-gpg --list-secret-keys
+```shell
+$ gpg --list-secret-keys
 ```
 
 Then add it to `~/.gnupg/gpg.conf` with this line:
 
-```console
-default-key [YOUR_KEY_ID]
+```shell
+$ default-key [YOUR_KEY_ID]
 ```
 
 ## Update the key with `gpg`
 
 Make any required changes to the key with the `gpg` command-line tool:
 
-```console
-gpg --edit-key [YOUR_KEY_ID]
+```shell
+$ gpg --edit-key [YOUR_KEY_ID]
 ```
 
 Some useful `gpg>` commands are:
@@ -61,16 +61,16 @@ Don't forget to `save` after making your changes!
 
 Now that you've updated your local copy of the key, push it back to [Keybase][] with:
 
-```console
-keybase pgp update
+```shell
+$ keybase pgp update
 ```
 
 ## Export the updated public key to [GitHub][]
 
 Export your local key to the clipboard with:
 
-```console
-keybase pgp export | pbcopy
+```shell
+$ keybase pgp export | pbcopy
 ```
 
 Go to [GitHub][] > [Settings](https://github.com/settings/profile) > [SSH and GPG keys](https://github.com/settings/keys)
@@ -85,9 +85,9 @@ Add `-S [YOUR_KEY_ID]` or `--gpg-sign=[YOUR_KEY_ID]` to your `git commit` comman
 
 Run these lines to update your global config to sign git commits by default:
 
-```console
-git config --global user.signingkey [YOUR_KEY_ID]
-git config --global core.gpgsign true
+```shell
+$ git config --global user.signingkey [YOUR_KEY_ID]
+$ git config --global core.gpgsign true
 ```
 
 These can additionally be set or unset on a per-project basis.
