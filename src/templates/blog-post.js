@@ -50,16 +50,6 @@ const BlogPostTemplate = ({ data, pageContext }) => {
             />
           </header>
           <div dangerouslySetInnerHTML={{ __html: post.html }} itemProp="articleBody" />
-          <footer>
-            <p>
-              {post.frontmatter.tags.map((tag, index, tags) => (
-                <React.Fragment key={tag}>
-                  <span itemProp="about">{tag}</span>
-                  {index < tags.length - 1 && ', '}
-                </React.Fragment>
-              ))}
-            </p>
-          </footer>
         </Article>
       </div>
       <NextPrevPostLinks>
@@ -90,7 +80,6 @@ export const query = graphql`
       frontmatter {
         title
         date
-        tags
         hero {
           alt
           image {

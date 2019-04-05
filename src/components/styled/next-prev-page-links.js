@@ -4,7 +4,7 @@ import { rhythm, scale } from '../../utils/typography';
 export const NextPrevPageLinks = styled.ul`
   display: grid;
   grid-template-columns: 1fr 110px 1fr;
-  margin: ${rhythm(1)} 0 0;
+  margin: ${rhythm(2)} 0 0;
   padding: ${rhythm(0.5)};
   list-style: none;
   li {

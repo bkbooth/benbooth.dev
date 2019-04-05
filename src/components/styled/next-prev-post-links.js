@@ -6,7 +6,7 @@ export const NextPrevPostLinks = styled.ul`
   ${scale(-0.25)};
   display: grid;
   grid-gap: ${rhythm(2)};
-  margin: ${rhythm(1)} 0 0;
+  margin: ${rhythm(2)} 0 0;
   padding: ${rhythm(0.5)};
   list-style: none;
   @media only screen and (${props => props.theme.breakpoints.min.desktop}) {
