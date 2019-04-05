@@ -7,30 +7,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { ChildContainer, Container, Credit } from './styled/hero';
 
-const Hero = ({ alt, image, unsplash, children }) => (
-  <Container>
-    <Image
-      fluid={unsplash ? unsplash.image.childImageSharp.fluid : image.childImageSharp.fluid}
-      alt={unsplash ? unsplash.description : alt}
-      style={{ maxHeight: '65vh', minHeight: '290px' }}
-      itemProp="image"
-    />
-    {children && <ChildContainer>{children}</ChildContainer>}
-    {unsplash && (
-      <Credit>
-        <FontAwesomeIcon icon={faCamera} fixedWidth /> by{' '}
-        <a href={unsplash.user.links.html}>{unsplash.user.name}</a> on{' '}
-        <a href={unsplash.links.html}>Unsplash</a>
-        {unsplash.location && (
-          <>
-            {' '}
-            · <FontAwesomeIcon icon={faMapMarkerAlt} fixedWidth /> {unsplash.location.title}
-          </>
-        )}
-      </Credit>
-    )}
-  </Container>
-);
+const Hero = ({ alt, image, unsplash, children }) => {
+  const heroImage = unsplash ? unsplash.image : image;
+  return (
+    <Container>
+      <meta itemProp="image" content={heroImage.childImageSharp.fluid.src} />
+      <Image
+        fluid={heroImage.childImageSharp.fluid}
+        alt={unsplash ? unsplash.description || `Unsplash image ${unsplash.id}` : alt}
+        style={{ maxHeight: '65vh', minHeight: '290px' }}
+      />
+      {children && <ChildContainer>{children}</ChildContainer>}
+      {unsplash && (
+        <Credit>
+          <FontAwesomeIcon icon={faCamera} fixedWidth /> by{' '}
+          <a href={unsplash.user.links.html}>{unsplash.user.name}</a> on{' '}
+          <a href={unsplash.links.html}>Unsplash</a>
+          {unsplash.location && (
+            <>
+              {' '}
+              · <FontAwesomeIcon icon={faMapMarkerAlt} fixedWidth /> {unsplash.location.title}
+            </>
+          )}
+        </Credit>
+      )}
+    </Container>
+  );
+};
 
 Hero.propTypes = {
   alt: requiredIf(PropTypes.string, props => !props.unsplash),
@@ -54,6 +57,7 @@ export default Hero;
 
 export const query = graphql`
   fragment UnsplashHeroFields on UnsplashJson {
+    id
     description
     links {
       html
