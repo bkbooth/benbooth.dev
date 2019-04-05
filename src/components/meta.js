@@ -22,7 +22,7 @@ function Meta({ description, lang, meta, path, pageType, title }) {
   `);
 
   const metaDescription = description || site.description;
-  const canonicalUrl = `${site.siteUrl}${path}/`;
+  const canonicalUrl = site.siteUrl + path;
   const image = `${site.siteUrl}/icons/icon-512x512.png`;
 
   return (

@@ -4,31 +4,38 @@ import { Link } from 'gatsby';
 import ArticleInfo from './article-info';
 import { Container, RelativeLabel } from './styled/article-mini';
 
-const ArticleMini = ({ article, isNext = false, isPrevious = false }) => (
-  <Container alignRight={isPrevious} itemScope itemType="https://schema.org/Article">
-    <header>
-      <h2>
-        {isPrevious && <RelativeLabel>Older</RelativeLabel>}
-        {isNext && <RelativeLabel>Newer</RelativeLabel>}
-        <Link to={`/${article.fields.slug}`} rel={isPrevious ? 'prev' : isNext ? 'next' : null}>
-          {isPrevious && '← '}
-          <span itemProp="name">{article.frontmatter.title}</span>
-          {isNext && ' →'}
-        </Link>
-      </h2>
-      <ArticleInfo
-        date={article.frontmatter.date}
-        timeToRead={article.timeToRead}
-        withAuthor={false}
-        rightAlign={true}
+const ArticleMini = ({ article, isNext = false, isPrev = false, site }) => {
+  const canonicalUrl = `${site.siteUrl}/${article.fields.slug}`;
+  return (
+    <Container alignRight={isPrev} itemScope itemType="https://schema.org/Article">
+      <meta itemProp="name" content={article.frontmatter.title} />
+      <meta itemProp="publisher" content={site.title} />
+      <meta itemProp="url" content={canonicalUrl} />
+      <meta itemProp="mainEntityOfPage" content={canonicalUrl} />
+      <header>
+        <h2>
+          {isPrev && <RelativeLabel>Older</RelativeLabel>}
+          {isNext && <RelativeLabel>Newer</RelativeLabel>}
+          <Link to={`/${article.fields.slug}`} rel={isPrev ? 'prev' : isNext ? 'next' : null}>
+            {isPrev && '← '}
+            <span itemProp="headline">{article.frontmatter.title}</span>
+            {isNext && ' →'}
+          </Link>
+        </h2>
+        <ArticleInfo
+          date={article.frontmatter.date}
+          timeToRead={article.timeToRead}
+          withAuthor={false}
+          rightAlign={true}
+        />
+      </header>
+      <p
+        dangerouslySetInnerHTML={{ __html: article.frontmatter.description || article.excerpt }}
+        itemProp="description"
       />
-    </header>
-    <p
-      dangerouslySetInnerHTML={{ __html: article.frontmatter.description || article.excerpt }}
-      itemProp="description"
-    />
-  </Container>
-);
+    </Container>
+  );
+};
 
 ArticleMini.propTypes = {
   article: PropTypes.shape({
@@ -42,7 +49,11 @@ ArticleMini.propTypes = {
     }).isRequired,
   }).isRequired,
   isNext: PropTypes.bool,
-  isPrevious: PropTypes.bool,
+  isPrev: PropTypes.bool,
+  site: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    siteUrl: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ArticleMini;

@@ -10,9 +10,13 @@ import { NextPrevPostLinks } from '../components/styled/next-prev-post-links';
 import { HeaderSpacer } from '../components/styled/layout';
 
 const BlogPostTemplate = ({ data, pageContext }) => {
-  const post = data.markdownRemark;
+  const {
+    site: { siteMetadata: site },
+    markdownRemark: post,
+  } = data;
   const { hero } = post.frontmatter;
   const { nextPost, previousPost } = pageContext;
+  const canonicalUrl = site.siteUrl + post.fields.slug;
   return (
     <Layout>
       <Meta
@@ -22,6 +26,10 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         pageType="article"
       />
       <div itemScope itemType="https://schema.org/Article">
+        <meta itemProp="name" content={post.frontmatter.title} />
+        <meta itemProp="publisher" content={site.title} />
+        <meta itemProp="url" content={canonicalUrl} />
+        <meta itemProp="mainEntityOfPage" content={canonicalUrl} />
         {post.unsplashHero ? (
           <Hero unsplash={post.unsplashHero} />
         ) : hero ? (
@@ -31,7 +39,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         )}
         <Article>
           <header>
-            <h1 itemProp="name">{post.frontmatter.title}</h1>
+            <h1 itemProp="headline">{post.frontmatter.title}</h1>
             <ArticleInfo
               date={post.frontmatter.date}
               timeToRead={post.timeToRead}
@@ -52,8 +60,8 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         </Article>
       </div>
       <NextPrevPostLinks>
-        <li>{previousPost && <ArticleMini article={previousPost} isPrevious={true} />}</li>
-        <li>{nextPost && <ArticleMini article={nextPost} isNext={true} />}</li>
+        <li>{previousPost && <ArticleMini article={previousPost} isPrev={true} site={site} />}</li>
+        <li>{nextPost && <ArticleMini article={nextPost} isNext={true} site={site} />}</li>
       </NextPrevPostLinks>
     </Layout>
   );
@@ -63,6 +71,12 @@ export default BlogPostTemplate;
 
 export const query = graphql`
   query($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        siteUrl
+      }
+    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       timeToRead
       excerpt

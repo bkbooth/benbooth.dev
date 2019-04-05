@@ -9,6 +9,9 @@ import { Article } from '../components/styled/article';
 import { NextPrevPageLinks } from '../components/styled/next-prev-page-links';
 
 const IndexPage = ({ data, pageContext }) => {
+  const {
+    site: { siteMetadata: site },
+  } = data;
   const posts = data.allMarkdownRemark.edges;
   const { previousPath, nextPath, page, numberOfPages } = pageContext;
   return (
@@ -20,7 +23,7 @@ const IndexPage = ({ data, pageContext }) => {
       <main>
         {posts.map(({ node: post }) => (
           <Article key={post.id}>
-            <ArticleMini article={post} />
+            <ArticleMini article={post} site={site} />
           </Article>
         ))}
       </main>
@@ -51,6 +54,12 @@ export default IndexPage;
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
+    site {
+      siteMetadata {
+        title
+        siteUrl
+      }
+    }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       skip: $skip
