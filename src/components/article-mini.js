@@ -10,7 +10,7 @@ const ArticleMini = ({ article, isNext = false, isPrevious = false }) => (
       <h2>
         {isPrevious && <RelativeLabel>Older</RelativeLabel>}
         {isNext && <RelativeLabel>Newer</RelativeLabel>}
-        <Link to={`/${article.fields.slug}`} rel={isPrevious ? 'prev' : isNext ? 'next' : false}>
+        <Link to={`/${article.fields.slug}`} rel={isPrevious ? 'prev' : isNext ? 'next' : null}>
           {isPrevious && '← '}
           <span itemProp="name">{article.frontmatter.title}</span>
           {isNext && ' →'}
