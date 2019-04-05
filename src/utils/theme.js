@@ -3,7 +3,7 @@ export const theme = {
     primary: '#0f6d94',
     dark: 'hsla(0, 0%, 0%, 0.9)',
     light: 'hsl(0, 0%, 95%)',
-    muted: 'hsl(0, 0%, 50%)',
+    muted: 'hsl(0, 0%, 46%)',
     border: 'hsl(0, 0%, 90%)',
     codeBg: '#f6fbfd',
   },
