@@ -106,6 +106,6 @@ exports.sourceNodes = ({ getNodesByType }) => {
  */
 function paginationPath(page, numberOfPages) {
   if (page === 0) return '/';
-  if (0 < page && page < numberOfPages) return `page/${page + 1}`;
+  if (0 < page && page < numberOfPages) return `/page/${page + 1}`;
   return null;
 }
