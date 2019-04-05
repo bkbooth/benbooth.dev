@@ -25,7 +25,7 @@ const ArticleInfo = ({ date, timeToRead, withAuthor }) => (
           </Photo>
         )}
         <div>
-          <div itemProp="author" itemScope itemType="Person">
+          <div itemProp="author" itemScope itemType="https://schema.org/Person">
             {withAuthor ? (
               <Author itemProp="name" children={site.author} />
             ) : (

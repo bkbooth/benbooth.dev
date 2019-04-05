@@ -11,7 +11,7 @@ const ArticleMini = ({ article, isNext = false, isPrev = false, site }) => {
       <meta itemProp="name" content={article.frontmatter.title} />
       <meta itemProp="url" content={canonicalUrl} />
       <meta itemProp="mainEntityOfPage" content={canonicalUrl} />
-      <span itemProp="publisher" itemScope itemType="Person">
+      <span itemProp="publisher" itemScope itemType="https://schema.org/Person">
         <meta itemProp="name" content={site.title} />
       </span>
       <header>
