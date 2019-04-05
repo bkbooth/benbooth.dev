@@ -25,11 +25,13 @@ const ArticleInfo = ({ date, timeToRead, withAuthor }) => (
           </Photo>
         )}
         <div>
-          {withAuthor ? (
-            <Author itemProp="author" itemType="https://schema.org/Person" children={site.author} />
-          ) : (
-            <meta itemProp="author" itemType="https://schema.org/Person" content={site.author} />
-          )}
+          <div itemProp="author" itemType="https://schema.org/Person">
+            {withAuthor ? (
+              <Author itemProp="name" children={site.author} />
+            ) : (
+              <meta itemProp="name" content={site.author} />
+            )}
+          </div>
           <CommonDateline date={date} timeToRead={timeToRead} />
         </div>
       </Container>
