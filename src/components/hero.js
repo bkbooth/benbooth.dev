@@ -36,7 +36,7 @@ const Hero = ({ alt, image, unsplash, includeMetadata, site, children }) => {
           {unsplash.location && (
             <>
               {' '}
-              · <FontAwesomeIcon icon={faMapMarkerAlt} fixedWidth /> {unsplash.location.title}
+              <FontAwesomeIcon icon={faMapMarkerAlt} fixedWidth /> {unsplash.location.title}
             </>
           )}
         </Credit>

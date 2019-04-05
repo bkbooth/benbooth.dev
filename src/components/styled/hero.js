@@ -18,7 +18,7 @@ export const ChildContainer = styled.div`
 
 export const Credit = styled.div`
   ${scale(-0.5)};
-  line-height: 0.75rem;
+  line-height: 0.9rem;
   position: absolute;
   left: 0;
   bottom: 0;
