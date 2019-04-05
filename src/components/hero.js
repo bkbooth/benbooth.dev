@@ -1,17 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
+import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { ChildContainer, Container, Credit } from './styled/hero';
 
-const Hero = ({ alt, image, unsplash, children }) => {
+const Hero = ({ alt, image, unsplash, includeMetadata, site, children }) => {
   const heroImage = unsplash ? unsplash.image : image;
+  const imageUrl = includeMetadata ? site.siteUrl + heroImage.childImageSharp.fluid.src : null;
   return (
     <Container>
-      <meta itemProp="image" content={heroImage.childImageSharp.fluid.src} />
+      {includeMetadata && (
+        <>
+          <Helmet>
+            <meta name="og:image" content={imageUrl} />
+            <meta name="twitter:image" content={imageUrl} />
+          </Helmet>
+          <meta itemProp="image" content={imageUrl} />
+        </>
+      )}
       <Image
         fluid={heroImage.childImageSharp.fluid}
         alt={unsplash ? unsplash.description || `Unsplash image ${unsplash.id}` : alt}
@@ -35,6 +45,10 @@ const Hero = ({ alt, image, unsplash, children }) => {
   );
 };
 
+Hero.defaultProps = {
+  includeMetadata: false,
+};
+
 Hero.propTypes = {
   alt: requiredIf(PropTypes.string, props => !props.unsplash),
   image: requiredIf(PropTypes.object, props => !props.unsplash),
@@ -51,6 +65,10 @@ Hero.propTypes = {
     }),
     props => !props.image
   ),
+  includeMetadata: PropTypes.bool.isRequired,
+  site: PropTypes.shape({
+    siteUrl: PropTypes.string.isRequired,
+  }),
 };
 
 export default Hero;

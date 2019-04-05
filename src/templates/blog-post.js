@@ -24,6 +24,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         description={post.excerpt}
         path={`/${post.fields.slug}`}
         pageType="article"
+        useDefaultImage={!(post.unsplashHero || hero)}
       />
       <div itemScope itemType="https://schema.org/Article">
         <meta itemProp="name" content={post.frontmatter.title} />
@@ -31,9 +32,9 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         <meta itemProp="url" content={canonicalUrl} />
         <meta itemProp="mainEntityOfPage" content={canonicalUrl} />
         {post.unsplashHero ? (
-          <Hero unsplash={post.unsplashHero} />
+          <Hero unsplash={post.unsplashHero} site={site} />
         ) : hero ? (
-          <Hero image={hero.image} alt={hero.alt} />
+          <Hero image={hero.image} alt={hero.alt} site={site} />
         ) : (
           <HeaderSpacer />
         )}
