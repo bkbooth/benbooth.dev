@@ -21,27 +21,36 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         path={`/${post.fields.slug}`}
         pageType="article"
       />
-      {post.unsplashHero ? (
-        <Hero unsplash={post.unsplashHero} />
-      ) : hero ? (
-        <Hero image={hero.image} alt={hero.alt} />
-      ) : (
-        <HeaderSpacer />
-      )}
-      <Article>
-        <header>
-          <h1>{post.frontmatter.title}</h1>
-          <ArticleInfo
-            date={post.frontmatter.date}
-            timeToRead={post.timeToRead}
-            withAuthor={true}
-          />
-        </header>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <footer>
-          <p>{post.frontmatter.tags.join(', ')}</p>
-        </footer>
-      </Article>
+      <div itemScope itemType="https://schema.org/Article">
+        {post.unsplashHero ? (
+          <Hero unsplash={post.unsplashHero} />
+        ) : hero ? (
+          <Hero image={hero.image} alt={hero.alt} />
+        ) : (
+          <HeaderSpacer />
+        )}
+        <Article>
+          <header>
+            <h1 itemProp="name">{post.frontmatter.title}</h1>
+            <ArticleInfo
+              date={post.frontmatter.date}
+              timeToRead={post.timeToRead}
+              withAuthor={true}
+            />
+          </header>
+          <div dangerouslySetInnerHTML={{ __html: post.html }} itemProp="articleBody" />
+          <footer>
+            <p>
+              {post.frontmatter.tags.map((tag, index, tags) => (
+                <React.Fragment key={tag}>
+                  <span itemProp="about">{tag}</span>
+                  {index < tags.length - 1 && ', '}
+                </React.Fragment>
+              ))}
+            </p>
+          </footer>
+        </Article>
+      </div>
       <NextPrevPostLinks>
         <li>{previousPost && <ArticleMini article={previousPost} isPrevious={true} />}</li>
         <li>{nextPost && <ArticleMini article={nextPost} isNext={true} />}</li>

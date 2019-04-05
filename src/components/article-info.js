@@ -6,35 +6,36 @@ import { Author, Container, Dateline, Photo, Spacer, StyledImage } from './style
 
 const CommonDateline = ({ date, timeToRead }) => (
   <Dateline>
-    <time dateTime={date}>{format(date, 'Do MMM YYYY')}</time>
+    <time dateTime={date} itemProp="datePublished">
+      {format(date, 'Do MMM YYYY')}
+    </time>
     <Spacer>&middot;</Spacer>
     {timeToRead} min read
   </Dateline>
 );
 
-const ArticleInfo = ({ date, timeToRead, withAuthor }) =>
-  withAuthor ? (
-    <StaticQuery
-      query={authorQuery}
-      render={({ site: { siteMetadata: site }, profilePic }) => (
-        <Container>
+const ArticleInfo = ({ date, timeToRead, withAuthor }) => (
+  <StaticQuery
+    query={authorQuery}
+    render={({ site: { siteMetadata: site }, profilePic }) => (
+      <Container>
+        {withAuthor && (
           <Photo>
             <StyledImage fixed={profilePic.childImageSharp.fixed} alt={`Photo of ${site.author}`} />
           </Photo>
-          <div>
-            <Author>{site.author}</Author>
-            <CommonDateline date={date} timeToRead={timeToRead} />
-          </div>
-        </Container>
-      )}
-    />
-  ) : (
-    <Container>
-      <div>
-        <CommonDateline date={date} timeToRead={timeToRead} />
-      </div>
-    </Container>
-  );
+        )}
+        <div>
+          {withAuthor ? (
+            <Author itemProp="author">{site.author}</Author>
+          ) : (
+            <meta itemProp="author" content={site.author} />
+          )}
+          <CommonDateline date={date} timeToRead={timeToRead} />
+        </div>
+      </Container>
+    )}
+  />
+);
 
 ArticleInfo.propTypes = {
   date: PropTypes.string.isRequired,

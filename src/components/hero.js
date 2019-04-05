@@ -13,6 +13,7 @@ const Hero = ({ alt, image, unsplash, children }) => (
       fluid={unsplash ? unsplash.image.childImageSharp.fluid : image.childImageSharp.fluid}
       alt={unsplash ? unsplash.description : alt}
       style={{ maxHeight: '65vh', minHeight: '290px' }}
+      itemProp="image"
     />
     {children && <ChildContainer>{children}</ChildContainer>}
     {unsplash && (

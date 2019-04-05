@@ -5,14 +5,14 @@ import ArticleInfo from './article-info';
 import { Container, RelativeLabel } from './styled/article-mini';
 
 const ArticleMini = ({ article, isNext = false, isPrevious = false }) => (
-  <Container alignRight={isPrevious}>
+  <Container alignRight={isPrevious} itemScope itemType="https://schema.org/Article">
     <header>
       <h2>
         {isPrevious && <RelativeLabel>Older</RelativeLabel>}
         {isNext && <RelativeLabel>Newer</RelativeLabel>}
         <Link to={`/${article.fields.slug}`} rel={isPrevious ? 'prev' : isNext ? 'next' : false}>
           {isPrevious && '← '}
-          {article.frontmatter.title}
+          <span itemProp="name">{article.frontmatter.title}</span>
           {isNext && ' →'}
         </Link>
       </h2>
@@ -23,7 +23,10 @@ const ArticleMini = ({ article, isNext = false, isPrevious = false }) => (
         rightAlign={true}
       />
     </header>
-    <p dangerouslySetInnerHTML={{ __html: article.frontmatter.description || article.excerpt }} />
+    <p
+      dangerouslySetInnerHTML={{ __html: article.frontmatter.description || article.excerpt }}
+      itemProp="description"
+    />
   </Container>
 );
 
