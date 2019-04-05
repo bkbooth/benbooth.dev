@@ -9,7 +9,7 @@ const ArticleMini = ({ article, isNext = false, isPrev = false, site }) => {
   return (
     <Container alignRight={isPrev} itemScope itemType="https://schema.org/Article">
       <meta itemProp="name" content={article.frontmatter.title} />
-      <meta itemProp="publisher" content={site.title} />
+      <meta itemProp="publisher" itemType="https://schema.org/Person" content={site.title} />
       <meta itemProp="url" content={canonicalUrl} />
       <meta itemProp="mainEntityOfPage" content={canonicalUrl} />
       <header>

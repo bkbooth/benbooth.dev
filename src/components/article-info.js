@@ -26,9 +26,9 @@ const ArticleInfo = ({ date, timeToRead, withAuthor }) => (
         )}
         <div>
           {withAuthor ? (
-            <Author itemProp="author">{site.author}</Author>
+            <Author itemProp="author" itemType="https://schema.org/Person" children={site.author} />
           ) : (
-            <meta itemProp="author" content={site.author} />
+            <meta itemProp="author" itemType="https://schema.org/Person" content={site.author} />
           )}
           <CommonDateline date={date} timeToRead={timeToRead} />
         </div>
