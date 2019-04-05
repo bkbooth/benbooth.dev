@@ -34,9 +34,9 @@ const BlogPostTemplate = ({ data, pageContext }) => {
           <meta itemProp="name" content={site.title} />
         </span>
         {post.unsplashHero ? (
-          <Hero unsplash={post.unsplashHero} site={site} />
+          <Hero unsplash={post.unsplashHero} includeMetadata={true} site={site} />
         ) : hero ? (
-          <Hero image={hero.image} alt={hero.alt} site={site} />
+          <Hero image={hero.image} alt={hero.alt} includeMetadata={true} site={site} />
         ) : (
           <HeaderSpacer />
         )}

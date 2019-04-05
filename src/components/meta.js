@@ -64,16 +64,18 @@ function Meta({ description, lang, path, pageType, title, useDefaultImage }) {
     },
   ];
   if (useDefaultImage) {
-    meta.concat([
-      {
-        property: 'og:defaultImage',
-        content: defaultImage,
-      },
-      {
-        name: 'twitter:image',
-        content: defaultImage,
-      },
-    ]);
+    meta.push(
+      ...[
+        {
+          property: 'og:image',
+          content: defaultImage,
+        },
+        {
+          name: 'twitter:image',
+          content: defaultImage,
+        },
+      ]
+    );
   }
 
   return (
